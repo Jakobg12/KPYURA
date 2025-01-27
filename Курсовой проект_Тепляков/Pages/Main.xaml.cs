@@ -16,7 +16,7 @@ namespace Курсовой_проект_Тепляков.Pages
     {
         public enum page_main
         {
-            companies, locations, parts, technique, type_of_troops, weapons, none
+            Vmestim, locations, parts, technique, type_of_troops, none
         }
 
         public static page_main page_select;
@@ -33,13 +33,11 @@ namespace Курсовой_проект_Тепляков.Pages
         {
             if (connectApply == true)
             {
-                Login.connection.LoadData(Connection.Tables.companies);
+                Login.connection.LoadData(Connection.Tables.voditel);
                 Login.connection.LoadData(Connection.Tables.locations);
-                Login.connection.LoadData(Connection.Tables.parts);
+                Login.connection.LoadData(Connection.Tables.garage);
                 Login.connection.LoadData(Connection.Tables.technique);
-                Login.connection.LoadData(Connection.Tables.type_of_troops);
-                Login.connection.LoadData(Connection.Tables.weapons);
-                Login.connection.LoadData(Connection.Tables.country);
+                Login.connection.LoadData(Connection.Tables.zapchast);
             } 
         }
 
@@ -71,7 +69,7 @@ namespace Курсовой_проект_Тепляков.Pages
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Parts parts_items in ClassConnection.Connection.parts)
+                foreach (ClassModules.Garage parts_items in ClassConnection.Connection.garage)
                 {
                     if (page_select == page_main.parts)
                     {
@@ -83,7 +81,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Parts(new ClassModules.Parts());
+                        var add = new Pages.PagesInTable.Parts(new ClassModules.Garage());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
@@ -95,10 +93,10 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             if (page_select != page_main.parts)
             {
@@ -128,7 +126,7 @@ namespace Курсовой_проект_Тепляков.Pages
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Locations locations_items in ClassConnection.Connection.locations)
+                foreach (ClassModules.Ceh locations_items in ClassConnection.Connection.ceh)
                 {
                     if (page_select == page_main.locations)
                     {
@@ -140,7 +138,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Locations(new ClassModules.Locations());
+                        var add = new Pages.PagesInTable.Locations(new ClassModules.Ceh());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
@@ -152,10 +150,9 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             if (page_select != page_main.locations)
             {
@@ -181,42 +178,42 @@ namespace Курсовой_проект_Тепляков.Pages
             }
         }
 
-        private void LoadCompanies()
+        private void LoadVmestim()
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Companies companies_items in ClassConnection.Connection.companies)
+                foreach (ClassModules.Voditel Vmestim_items in ClassConnection.Connection.voditel)
                 {
-                    if (page_select == page_main.companies)
+                    if (page_select == page_main.Vmestim)
                     {
-                        parrent.Children.Add(new Elements.Companies_items(companies_items));
+                        parrent.Children.Add(new Elements.Vmestim_items(Vmestim_items));
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.companies)
+                if (page_select == page_main.Vmestim)
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Companies(new ClassModules.Companies());
+                        var add = new Pages.PagesInTable.Garage(new ClassModules.Voditel());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
             });
         }
         
-        private void Click_Companies(object sender, RoutedEventArgs e)
+        private void Click_Vmestim(object sender, RoutedEventArgs e)
         {
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
+            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.companies)
+            if (page_select != page_main.Vmestim)
             {
-                page_select = page_main.companies;
+                page_select = page_main.Vmestim;
                 DoubleAnimation opgridAnimation = new DoubleAnimation();
                 opgridAnimation.From = 1;
                 opgridAnimation.To = 0;
@@ -230,7 +227,7 @@ namespace Курсовой_проект_Тепляков.Pages
                     opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
                     opgriAnimation.Completed += delegate
                     {
-                        LoadCompanies();
+                        LoadVmestim();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
                 };
@@ -266,10 +263,10 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             if (page_select != page_main.technique)
             {
@@ -299,7 +296,7 @@ namespace Курсовой_проект_Тепляков.Pages
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Type_of_troops type_of_troops_items in ClassConnection.Connection.type_of_troops)
+                foreach (ClassModules.Zapchast type_of_troops_items in ClassConnection.Connection.zapchast)
                 {
                     if (page_select == page_main.type_of_troops)
                     {
@@ -311,7 +308,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Type_of_troops(new ClassModules.Type_of_troops());
+                        var add = new Pages.PagesInTable.Type_of_troops(new ClassModules.Zapchast());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
@@ -323,10 +320,9 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             if (page_select != page_main.type_of_troops)
             {
@@ -352,72 +348,19 @@ namespace Курсовой_проект_Тепляков.Pages
             }
         }
 
-        private void LoadWeapons()
-        {
-            Dispatcher.InvokeAsync(async () =>
-            {
-                foreach (ClassModules.Weapons weapons_items in ClassConnection.Connection.weapons)
-                {
-                    if (page_select == page_main.weapons)
-                    {
-                        parrent.Children.Add(new Elements.Weapons_items(weapons_items));
-                        await Task.Delay(90);
-                    }
-                }
-                if (page_select == page_main.weapons)
-                {
-                    if (Login.UserInfo[1] == "admin")
-                    {
-                        var add = new Pages.PagesInTable.Weapons(new ClassModules.Weapons());
-                        parrent.Children.Add(new Elements.Add(add));
-                    }
-                }
-            });
-        }
         
-        private void Click_Weapons(object sender, RoutedEventArgs e)
-        {
-            Search.IsEnabled = true;
-            parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
-            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.weapons)
-            {
-                page_select = page_main.weapons;
-                DoubleAnimation opgridAnimation = new DoubleAnimation();
-                opgridAnimation.From = 1;
-                opgridAnimation.To = 0;
-                opgridAnimation.Duration = TimeSpan.FromSeconds(0.2);
-                opgridAnimation.Completed += delegate
-                {
-                    parrent.Children.Clear();
-                    DoubleAnimation opgriAnimation = new DoubleAnimation();
-                    opgriAnimation.From = 0;
-                    opgriAnimation.To = 1;
-                    opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
-                    opgriAnimation.Completed += delegate
-                    {
-                        LoadWeapons();
-                    };
-                    parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
-                };
-                parrent.BeginAnimation(StackPanel.OpacityProperty, opgridAnimation);
-            }
-        }
+        
+        
 
         private void Click_Export(object sender, MouseButtonEventArgs e)
         {
             Search.IsEnabled = false;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            
             parrent.Children.Clear();
             page_select = page_main.none;
             var export = new ExportWindow();
@@ -434,22 +377,22 @@ namespace Курсовой_проект_Тепляков.Pages
                 if (page_select == page_main.parts)
                 {
                     parrent.Children.Clear();
-                    var parts = Connection.parts.FindAll(x => x.Id_part.ToString() == Search.Text);
+                    var parts = Connection.garage.FindAll(x => x.Id_garage.ToString() == Search.Text);
                     foreach (var itemSearch in parts) parrent.Children.Add(new Elements.Parts_items(itemSearch));
                 }
-                else if (page_select == page_main.locations)
+                //else if (page_select == page_main.locations)
+                //{
+                //    parrent.Children.Clear();
+                //    var country = Connection.country.FindAll(x => x.Name.Contains(Search.Text));
+                //    var countryIds = country.Select(c => c.Id).ToList();
+                //    var locationsByCountry = Connection.locations.Where(l => countryIds.Contains(l.Country)).ToList();
+                //    foreach (var itemSearch in locationsByCountry) parrent.Children.Add(new Elements.Locations_items(itemSearch));
+                //}
+                else if (page_select == page_main.Vmestim)
                 {
                     parrent.Children.Clear();
-                    var country = Connection.country.FindAll(x => x.Name.Contains(Search.Text));
-                    var countryIds = country.Select(c => c.Id).ToList();
-                    var locationsByCountry = Connection.locations.Where(l => countryIds.Contains(l.Country)).ToList();
-                    foreach (var itemSearch in locationsByCountry) parrent.Children.Add(new Elements.Locations_items(itemSearch));
-                }
-                else if (page_select == page_main.companies)
-                {
-                    parrent.Children.Clear();
-                    var companiesById = Connection.companies.FindAll(x => x.Id_companies.ToString().Contains(Search.Text));
-                    foreach (var itemSearch in companiesById) parrent.Children.Add(new Elements.Companies_items(itemSearch));
+                    var VmestimById = Connection.voditel.FindAll(x => x.Id_voditel.ToString().Contains(Search.Text));
+                    foreach (var itemSearch in VmestimById) parrent.Children.Add(new Elements.Vmestim_items(itemSearch));
                 }
                 else if (page_select == page_main.technique)
                 {
@@ -460,15 +403,10 @@ namespace Курсовой_проект_Тепляков.Pages
                 else if (page_select == page_main.type_of_troops)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.type_of_troops.FindAll(x => x.Name_type_of_troops.Contains(Search.Text));
+                    var typeOfTroopByName = Connection.zapchast.FindAll(x => x.Name_zapchast.Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.TypeOfTroops_items(itemSearch));
                 }
-                else if (page_select == page_main.weapons)
-                {
-                    parrent.Children.Clear();
-                    var weaponById = Connection.weapons.FindAll(x => x.Id_weapons.ToString().Contains(Search.Text));
-                    foreach (var itemSearch in weaponById) parrent.Children.Add(new Elements.Weapons_items(itemSearch));
-                }
+                
             }
             else
             {
@@ -490,10 +428,10 @@ namespace Курсовой_проект_Тепляков.Pages
                         if (parrent != null) parrent.Children.Clear();
                         LoadLocations();
                     }
-                    else if (page_select == page_main.companies)
+                    else if (page_select == page_main.Vmestim)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadCompanies();
+                        LoadVmestim();
                     }
                     else if (page_select == page_main.technique)
                     {
@@ -505,11 +443,7 @@ namespace Курсовой_проект_Тепляков.Pages
                         if (parrent != null) parrent.Children.Clear();
                         LoadTypeOfTroops();
                     }
-                    else if (page_select == page_main.weapons)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadWeapons();
-                    }
+                    
                     isDataLoaded = true;
                 }
             }
@@ -524,10 +458,9 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = false;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            companies_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            weapons_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             parrent.Children.Clear();
             page_select = page_main.none;
             Login.UserInfo[0] = ""; Login.UserInfo[1] = "";
@@ -548,10 +481,10 @@ namespace Курсовой_проект_Тепляков.Pages
                     page_select = page_main.none;
                     Click_Locations(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.companies)
+                else if (page_restart == page_main.Vmestim)
                 {
                     page_select = page_main.none;
-                    Click_Companies(new object(), new RoutedEventArgs());
+                    Click_Vmestim(new object(), new RoutedEventArgs());
                 }
                 else if (page_restart == page_main.technique)
                 {
@@ -563,11 +496,7 @@ namespace Курсовой_проект_Тепляков.Pages
                     page_select = page_main.none;
                     Click_Type_of_troops(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.weapons)
-                {
-                    page_select = page_main.none;
-                    Click_Weapons(new object(), new RoutedEventArgs());
-                }
+                
             }
             else
             {

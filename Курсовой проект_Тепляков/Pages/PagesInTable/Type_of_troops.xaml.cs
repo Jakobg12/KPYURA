@@ -24,50 +24,48 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
     /// </summary>
     public partial class Type_of_troops : Page
     {
-        ClassModules.Type_of_troops type_of_troops;
-        public Type_of_troops(ClassModules.Type_of_troops _type_of_troops)
+        ClassModules.Zapchast type_of_troops;
+        public Type_of_troops(ClassModules.Zapchast _type_of_troops)
         {
             InitializeComponent();
             type_of_troops = _type_of_troops;
-            if (_type_of_troops.Name_type_of_troops != null) 
+            if (_type_of_troops.Name_zapchast != null) 
             {
-                Name_type_of_troops.Text = _type_of_troops.Name_type_of_troops;
+                Name_zapchast.Text = _type_of_troops.Name_zapchast;
                 Description.Text = _type_of_troops.Description;
-                Count_serviceman.Text = _type_of_troops.Count_serviceman.ToString();
             }
-            foreach (var item in ClassConnection.Connection.companies)
+            foreach (var item in ClassConnection.Connection.voditel)
             {
-                ComboBoxItem cb_companies = new ComboBoxItem();
-                cb_companies.Tag = item.Id_companies;
-                cb_companies.Content = item.Name_companies;
-                if (_type_of_troops.Companies == item.Id_companies) cb_companies.IsSelected = true;
-                Companies.Items.Add(cb_companies);
+                ComboBoxItem cb_Vmestim = new ComboBoxItem();
+                cb_Vmestim.Tag = item.Id_voditel;
+                cb_Vmestim.Content = item.Name_voditel;
+                Vmestim.Items.Add(cb_Vmestim);
             }
         }
 
         private void Click_TypeOfTroops_Redact(object sender, RoutedEventArgs e)
         {
-            ClassModules.Companies id_companies_temp;
-            id_companies_temp = ClassConnection.Connection.companies.Find(x => x.Id_companies == Convert.ToInt32(((ComboBoxItem)Companies.SelectedItem).Tag));
-            int id = Pages.Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.type_of_troops);
-            if (type_of_troops.Name_type_of_troops == null)
+            ClassModules.Voditel Id_voditel_temp;
+            Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(((ComboBoxItem)Vmestim.SelectedItem).Tag));
+            int id = Pages.Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.zapchast);
+            if (type_of_troops.Name_zapchast == null)
             {
-                string query = $"Insert Into type_of_troops ([Id_type_of_troops], [Name_type_of_troops], [Description], [Companies], [Count_serviceman], [Date_foundation]) Values ({id.ToString()}, N'{Name_type_of_troops.Text}', N'{Description.Text}', '{id_companies_temp.Id_companies.ToString()}', N'{Count_serviceman.Text}', '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                string query = $"Insert Into type_of_troops ([Id_zapchast], [Name_zapchast], [Description], [Vmestim], [Count_serviceman], [Date_foundation]) Values ({id.ToString()}, N'{Name_zapchast.Text}', N'{Description.Text}', '{Id_voditel_temp.Id_voditel.ToString()}', N'{Count_serviceman.Text}', '{DateTime.Now.ToString("yyyy-MM-dd")}')";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
-                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.type_of_troops);
+                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.type_of_troops);
                 }
                 else MessageBox.Show("Запрос на добавление вида войск не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
-                string query = $"Update type_of_troops Set Name_type_of_troops = N'{Name_type_of_troops.Text}', Description = N'{Description.Text}', Companies = '{id_companies_temp.Id_companies.ToString()}', Count_serviceman = N'{Count_serviceman.Text}' Where Id_type_of_troops = {type_of_troops.Id_type_of_troops}";
+                string query = $"Update type_of_troops Set Name_zapchast = N'{Name_zapchast.Text}', Description = N'{Description.Text}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}', Count_serviceman = N'{Count_serviceman.Text}' Where Id_zapchast = {type_of_troops.Id_zapchast}";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
-                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.type_of_troops);
+                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.type_of_troops);
                 }
                 else MessageBox.Show("Запрос на изменение вида войск не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -80,12 +78,12 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
         {
             try
             {
-                Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.type_of_troops);
-                string query = "Delete From type_of_troops Where [Id_type_of_troops] = " + type_of_troops.Id_type_of_troops.ToString() + "";
+                Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
+                string query = "Delete From type_of_troops Where [Id_zapchast] = " + type_of_troops.Id_zapchast.ToString() + "";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
-                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.type_of_troops);
+                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.type_of_troops);
                 }
                 else MessageBox.Show("Запрос на удаление вида войск не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -112,7 +110,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             if (words.Any(word => word.Length == 0))
             {
                 textBox.Text = "Ошибка: введите значение";
-                Name_type_of_troops.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
+                Name_zapchast.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
             }
         }
 
@@ -128,7 +126,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 animation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Name_type_of_troops.BorderBrush = brush;
+                Name_zapchast.BorderBrush = brush;
             }
         }
 

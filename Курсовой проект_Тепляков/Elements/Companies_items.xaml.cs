@@ -22,25 +22,25 @@ using Курсовой_проект_Тепляков.Pages.PagesInTable;
 namespace Курсовой_проект_Тепляков.Elements
 {
     /// <summary>
-    /// Логика взаимодействия для Companies_items.xaml
+    /// Логика взаимодействия для Vmestim_items.xaml
     /// </summary>
-    public partial class Companies_items : UserControl
+    public partial class Vmestim_items : UserControl
     {
         Connection connection;
-        ClassModules.Companies companies;
-        public Companies_items(ClassModules.Companies _companies)
+        ClassModules.Voditel Vmestim;
+        public Vmestim_items(ClassModules.Voditel _Vmestim)
         {
             InitializeComponent();
             connection = new ClassConnection.Connection();
             if (Pages.Login_Regin.Login.UserInfo[1] != "admin") Buttons.Visibility = Visibility.Hidden;
-            companies = _companies;
-            if(_companies.Commander != null)
+            Vmestim = _Vmestim;
+            if(_Vmestim.Prava != null)
             {
-                Id_parts.Content = "Рота №" + _companies.Id_companies.ToString();
-                Name_companies.Content = "Название роты: " + _companies.Name_companies;
-                Commander.Content = "Главнокомандующий: " + _companies.Commander;
-                Date_foundation.Content = "Дата создания: " + _companies.Date_foundation.ToString("dd.MM.yyyy");
-                Date_update_information.Content = "Дата обновления информации: " + _companies.Date_update_information.ToString("dd.MM.yyyy HH:mm:ss");
+                Id_garages.Content = "Рота №" + _Vmestim.Id_voditel.ToString();
+                Name_voditel.Content = "Название роты: " + _Vmestim.Name_voditel;
+                Prava.Content = "Главнокомандующий: " + _Vmestim.Prava;
+                Date_foundation.Content = "Дата создания: " + _Vmestim.Date_foundation.ToString("dd.MM.yyyy");
+                Date_update_information.Content = "Дата обновления информации: " + _Vmestim.Date_update_information.ToString("dd.MM.yyyy HH:mm:ss");
             }
             DoubleAnimation opgridAnimation = new DoubleAnimation();
             opgridAnimation.From = 0;
@@ -49,7 +49,7 @@ namespace Курсовой_проект_Тепляков.Elements
             border.BeginAnimation(StackPanel.OpacityProperty, opgridAnimation);
         }
 
-        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Companies(companies));
+        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Garage(Vmestim));
 
         private void Click_remove(object sender, RoutedEventArgs e)
         {
@@ -57,13 +57,13 @@ namespace Курсовой_проект_Тепляков.Elements
             {
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о роте?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.companies);
-                    string query = $"Delete From Companies Where Id_companies = " + companies.Id_companies.ToString() + "";
+                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
+                    string query = $"Delete From Vmestim Where Id_voditel = " + Vmestim.Id_voditel.ToString() + "";
                     var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.companies);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.companies);
+                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.Vmestim);
                     }
                     else MessageBox.Show("Запрос на удаление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }

@@ -39,9 +39,9 @@
                         <Label Content="Места дислокации" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="companies_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Companies" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="Vmestim_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Vmestim" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
-                        <Image Source="/Images/companies.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
+                        <Image Source="/Images/Vmestim.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
                         <Label Content="Роты" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
@@ -57,12 +57,7 @@
                         <Label Content="Виды войск" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="weapons_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Weapons" Padding="7,7,7,7" Cursor="Hand">
-                    <Grid Height="30">
-                        <Image Source="/Images/weapons.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Вооружения" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
-                    </Grid>
-                </Border>
+                
                 <Border Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" Background="AliceBlue" MouseDown="Click_Export" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/Export.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>

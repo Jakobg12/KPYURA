@@ -26,26 +26,26 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
     /// </summary>
     public partial class Parts : Page
     {
-        ClassModules.Parts parts;
-        public Parts(ClassModules.Parts _parts)
+        ClassModules.Garage parts;
+        public Parts(ClassModules.Garage _parts)
         {
             InitializeComponent();
             parts = _parts;
-            foreach (var item in Connection.locations)
+            foreach (var item in Connection.ceh)
             {
                 ComboBoxItem cb_locations = new ComboBoxItem();
-                cb_locations.Tag = item.Id_locations;
-                cb_locations.Content = "Город: " + item.City;
-                if (_parts.Locations == item.Id_locations) cb_locations.IsSelected = true;
+                cb_locations.Tag = item.Id_сeh;
+                cb_locations.Content = "Город: " + item.oborud;
+                if (_parts.Locations == item.Id_сeh) cb_locations.IsSelected = true;
                 Locations.Items.Add(cb_locations);
             }
-            foreach (var item in Connection.companies)
+            foreach (var item in Connection.voditel)
             {
-                ComboBoxItem cb_companies = new ComboBoxItem();
-                cb_companies.Tag = item.Id_companies;
-                cb_companies.Content = item.Name_companies;
-                if (_parts.Companies == item.Id_companies) cb_companies.IsSelected = true;
-                Companies.Items.Add(cb_companies);
+                ComboBoxItem cb_Vmestim = new ComboBoxItem();
+                cb_Vmestim.Tag = item.Id_voditel;
+                cb_Vmestim.Content = item.Name_voditel;
+                if (_parts.Vmestim == item.Id_voditel) cb_Vmestim.IsSelected = true;
+                Vmestim.Items.Add(cb_Vmestim);
             }
         }
 
@@ -53,32 +53,32 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
         {
             if (Locations.SelectedItem != null)
             {
-                if (Companies.SelectedItem != null)
+                if (Vmestim.SelectedItem != null)
                 {
-                    ClassModules.Locations id_locations_temp;
-                    ClassModules.Companies id_companies_temp;
-                    id_locations_temp = ClassConnection.Connection.locations.Find(x => x.Id_locations == Convert.ToInt32(((ComboBoxItem)Locations.SelectedItem).Tag));
-                    id_companies_temp = ClassConnection.Connection.companies.Find(x => x.Id_companies == Convert.ToInt32(((ComboBoxItem)Companies.SelectedItem).Tag));
-                    int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.parts);
-                    if (parts.Companies == 0)
+                    ClassModules.Ceh Id_сeh_temp;
+                    ClassModules.Voditel Id_voditel_temp;
+                    Id_сeh_temp = ClassConnection.Connection.ceh.Find(x => x.Id_сeh == Convert.ToInt32(((ComboBoxItem)Locations.SelectedItem).Tag));
+                    Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(((ComboBoxItem)Vmestim.SelectedItem).Tag));
+                    int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.garage);
+                    if (parts.Vmestim == 0)
                     {
-                        string query = $"Insert Into parts ([Id_part], [Locations], [Companies], [Date_of_foundation])" +
-                            $"Values ({id.ToString()}, {id_locations_temp.Id_locations.ToString()}, {id_companies_temp.Id_companies.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                        string query = $"Insert Into parts ([Id_garage], [Locations], [Vmestim], [Date_of_foundation])" +
+                            $"Values ({id.ToString()}, {Id_сeh_temp.Id_сeh.ToString()}, {Id_voditel_temp.Id_voditel.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
                         var query_apply = Login_Regin.Login.connection.Query(query);
                         if (query_apply != null)
                         {
-                            Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.parts);
+                            Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                             MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                         }
                         else MessageBox.Show("Запрос на добавление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     else
                     {
-                        string query = $"Update parts Set Locations = '{id_locations_temp.Id_locations.ToString()}', Companies = '{id_companies_temp.Id_companies.ToString()}' Where Id_part = {parts.Id_part}";
+                        string query = $"Update parts Set Locations = '{Id_сeh_temp.Id_сeh.ToString()}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}' Where Id_garage = {parts.Id_garage}";
                         var query_apply = Login_Regin.Login.connection.Query(query);
                         if (query_apply != null)
                         {
-                            Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.parts);
+                            Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                             MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                         }
                         else MessageBox.Show("Запрос на изменение части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -93,12 +93,12 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
         {
             try
             {
-                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.parts);
-                string query = "Delete parts Where [Id_part] = " + parts.Id_part.ToString() + "";
+                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                string query = "Delete parts Where [Id_garage] = " + parts.Id_garage.ToString() + "";
                 var query_apply = Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.parts);
+                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                     Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                 }
                 else MessageBox.Show("Запрос на удаление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);

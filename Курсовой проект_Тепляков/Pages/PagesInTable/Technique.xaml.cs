@@ -32,24 +32,24 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 Name_technique.Text = _technique.Name_technique;
                 Characteristics.Text = _technique.Characteristics;
             }
-            foreach (var item in ClassConnection.Connection.companies)
+            foreach (var item in ClassConnection.Connection.voditel)
             {
-                ComboBoxItem cb_companies = new ComboBoxItem();
-                cb_companies.Tag = item.Id_companies;
-                cb_companies.Content = item.Name_companies;
-                if (_technique.Companies == item.Id_companies) cb_companies.IsSelected = true;
-                Companies.Items.Add(cb_companies);
+                ComboBoxItem cb_Vmestim = new ComboBoxItem();
+                cb_Vmestim.Tag = item.Id_voditel;
+                cb_Vmestim.Content = item.Name_voditel;
+                if (_technique.Vmestim == item.Id_voditel) cb_Vmestim.IsSelected = true;
+                Vmestim.Items.Add(cb_Vmestim);
             }
         }
 
         private void Click_Technique_Redact(object sender, RoutedEventArgs e)
         {
-            ClassModules.Companies id_companies_temp;
-            id_companies_temp = ClassConnection.Connection.companies.Find(x => x.Id_companies == Convert.ToInt32(((ComboBoxItem)Companies.SelectedItem).Tag));
+            ClassModules.Voditel Id_voditel_temp;
+            Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(((ComboBoxItem)Vmestim.SelectedItem).Tag));
             int id = Pages.Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.technique);
             if (technique.Characteristics == null)
             {
-                string query = $"Insert Into technique ([Id_technique], [Name_technique], [Companies], [Characteristics]) Values ({id.ToString()}, N'{Name_technique.Text}', '{id_companies_temp.Id_companies.ToString()}', N'{Characteristics.Text}')";
+                string query = $"Insert Into technique ([Id_technique], [Name_technique], [Vmestim], [Characteristics]) Values ({id.ToString()}, N'{Name_technique.Text}', '{Id_voditel_temp.Id_voditel.ToString()}', N'{Characteristics.Text}')";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
@@ -60,7 +60,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update technique Set Name_technique = N'{Name_technique.Text}', Companies = '{id_companies_temp.Id_companies.ToString()}', Characteristics = N'{Characteristics.Text}' Where Id_technique = {technique.Id_technique}";
+                string query = $"Update technique Set Name_technique = N'{Name_technique.Text}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}', Characteristics = N'{Characteristics.Text}' Where Id_technique = {technique.Id_technique}";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {

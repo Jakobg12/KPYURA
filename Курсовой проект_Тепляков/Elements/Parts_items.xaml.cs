@@ -24,18 +24,17 @@ namespace Курсовой_проект_Тепляков.Elements
     /// </summary>
     public partial class Parts_items : UserControl
     {
-        ClassModules.Parts parts;
-        public Parts_items(ClassModules.Parts _parts)
+        ClassModules.Garage parts;
+        public Parts_items(ClassModules.Garage _parts)
         {
             InitializeComponent();
             if (Pages.Login_Regin.Login.UserInfo[1] != "admin") Buttons.Visibility = Visibility.Hidden;
             parts = _parts;
             if(_parts.Date_of_foundation != null)
             {
-                Id_part.Content = "Часть № " + _parts.Id_part;
-                ClassModules.Locations item_location = Connection.locations.Find(x => x.Id_locations == _parts.Locations);
-                Locations.Content = "Место дислокации: " + Connection.country.Find(x => x.Id == item_location.Country).Name + " г." + item_location.City;
-                Companies.Content = "Название роты: " + Connection.companies.Find(x => x.Id_companies == _parts.Companies).Name_companies;
+                Id_garage.Content = "Часть № " + _parts.Id_garage;
+                ClassModules.Ceh item_location = Connection.ceh.Find(x => x.Id_сeh == _parts.Locations);
+                Vmestim.Content = "Название роты: " + Connection.voditel.Find(x => x.Id_voditel == _parts.Vmestim).Name_voditel;
                 Date_of_foundation.Content = "Дата основания: " + _parts.Date_of_foundation.ToString("dd.MM.yyyy");
             }
         }
@@ -48,12 +47,12 @@ namespace Курсовой_проект_Тепляков.Elements
             {
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о части?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.parts);
-                    string query = $"Delete From Parts Where Id_part = " + parts.Id_part.ToString() + "";
+                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                    string query = $"Delete From Parts Where Id_garage = " + parts.Id_garage.ToString() + "";
                     var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.parts);
+                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.parts);
                     }
                     else MessageBox.Show("Запрос на удаление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);

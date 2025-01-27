@@ -20,66 +20,66 @@ using System.Windows.Shapes;
 namespace Курсовой_проект_Тепляков.Pages.PagesInTable
 {
     /// <summary>
-    /// Логика взаимодействия для Companies.xaml
+    /// Логика взаимодействия для Vmestim.xaml
     /// </summary>
-    public partial class Companies : Page
+    public partial class Garage : Page
     {
-        ClassModules.Companies companies;
-        public Companies(ClassModules.Companies _companies)
+        ClassModules.Voditel Vmestim;
+        public Garage(ClassModules.Voditel _Vmestim)
         {
             InitializeComponent();
-            companies = _companies;
-            if (_companies.Commander != null)
+            Vmestim = _Vmestim;
+            if (_Vmestim.Prava != null)
             {
-                Name_companies.Text = _companies.Name_companies;
-                Commander.Text = _companies.Commander;
+                Name_voditel.Text = _Vmestim.Name_voditel;
+                Prava.Text = _Vmestim.Prava;
             }
         }
 
-        private void Click_Companies_Redact(object sender, RoutedEventArgs e)
+        private void Click_Vmestim_Redact(object sender, RoutedEventArgs e)
         {
-            string[] FIOCommander = Commander.Text.Split(' ');
-            if (FIOCommander.Length <= 3)
+            string[] FIOPrava = Prava.Text.Split(' ');
+            if (FIOPrava.Length <= 3)
             {
-                int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.companies);
-                if (companies.Commander == null)
+                int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.voditel);
+                if (Vmestim.Prava == null)
                 {
-                    string query = $"INSERT INTO companies ([Id_companies], [Name_companies], [Commander], [Date_foundation], [Date_update_information]) VALUES ({id.ToString()}, N'{Name_companies.Text}', N'{Commander.Text}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+                    string query = $"INSERT INTO Vmestim ([Id_voditel], [Name_voditel], [Prava], [Date_foundation], [Date_update_information]) VALUES ({id.ToString()}, N'{Name_voditel.Text}', N'{Prava.Text}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.companies);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.companies);
+                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
                     }
                     else MessageBox.Show("Запрос на добавление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
-                    string query = $"UPDATE companies SET Name_companies = N'{Name_companies.Text}', Commander = N'{Commander.Text}', Date_update_information = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE Id_companies = {companies.Id_companies}";
+                    string query = $"UPDATE Vmestim SET Name_voditel = N'{Name_voditel.Text}', Prava = N'{Prava.Text}', Date_update_information = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE Id_voditel = {Vmestim.Id_voditel}";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.companies);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.companies);
+                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
                     }
                     else MessageBox.Show("Запрос на изменение роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
 
-        private void Click_Cancel_Companies_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
+        private void Click_Cancel_Vmestim_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
 
-        private void Click_Remove_Companies_Redact(object sender, RoutedEventArgs e)
+        private void Click_Remove_Vmestim_Redact(object sender, RoutedEventArgs e)
         {
             try
             {
-                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.companies);
-                string query = "Delete From companies Where [Id_companies] = " + companies.Id_companies.ToString() + "";
+                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
+                string query = "Delete From Vmestim Where [Id_voditel] = " + Vmestim.Id_voditel.ToString() + "";
                 var query_apply = Login_Regin.Login.connection.Query(query);
                 if(query_apply != null)
                 {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.companies);
-                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.companies);
+                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
+                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
                 }
                 else MessageBox.Show("Запрос на удаление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -105,7 +105,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             if (words.Any(word => word.Length == 0))
             {
                 textBox.Text = "Ошибка: введите значение";
-                Name_companies.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
+                Name_voditel.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
             }
         }
 
@@ -121,7 +121,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 animation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Name_companies.BorderBrush = brush;
+                Name_voditel.BorderBrush = brush;
             }
         }
 
@@ -141,7 +141,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             if (words.Length != 3 || words.Any(word => word.Length == 0))
             {
                 textBox.Text = "Ошибка: введите ровно три слова";
-                Commander.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
+                Prava.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
             }
         }
 
@@ -157,7 +157,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 animation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Commander.BorderBrush = brush;
+                Prava.BorderBrush = brush;
             }
         }
     }

@@ -41,10 +41,9 @@ namespace Курсовой_проект_Тепляков.Pages
             {
                 if (PartsExport.IsChecked == true) table[0] = "parts";
                 if (LocationsExport.IsChecked == true) table[1] = "locations";
-                if (CompaniesExport.IsChecked == true) table[2] = "companies";
+                if (VmestimExport.IsChecked == true) table[2] = "Vmestim";
                 if (TechniqueExport.IsChecked == true) table[3] = "technique";
                 if (TypeOfTroopsExport.IsChecked == true) table[4] = "typeOfTroops";
-                if (WeaponsExport.IsChecked == true) table[5] = "weapons";
             }
             ClassConnection.Connection.Export(table, saveFileDialog.FileName);
             System.Windows.MessageBox.Show($"Экспорт выполнен.\nФайл находиться по пути: {saveFileDialog.FileName}.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);

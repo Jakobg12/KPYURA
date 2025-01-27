@@ -10,11 +10,11 @@ namespace ClassModules
     {
         public int Id_technique { get; set; }
         public string Name_technique { get; set; }
-        public int Companies { get; set; }
+        public int Vmestim { get; set; }
         public string Characteristics { get; set; }
         //public int Id_technique { get; set; }
         //public string Name_technique { get; set; }
-        //public int Companies { get; set; }
+        //public int Vmestim { get; set; }
         //public string Characteristics { get; set; }
     }
 }

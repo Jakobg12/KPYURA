@@ -24,18 +24,16 @@ namespace Курсовой_проект_Тепляков.Elements
     /// </summary>
     public partial class TypeOfTroops_items : UserControl
     {
-        ClassModules.Type_of_troops type_of_troops;
-        public TypeOfTroops_items(ClassModules.Type_of_troops _type_of_troops)
+        ClassModules.Zapchast type_of_troops;
+        public TypeOfTroops_items(ClassModules.Zapchast _type_of_troops)
         {
             InitializeComponent();
             if (Pages.Login_Regin.Login.UserInfo[1] != "admin") Buttons.Visibility = Visibility.Hidden;
             type_of_troops = _type_of_troops;
-            if(_type_of_troops.Name_type_of_troops != null)
+            if(_type_of_troops.Name_zapchast != null)
             {
-                Name_type_of_troops.Content = "Название вида войск: " + _type_of_troops.Name_type_of_troops;
+                Name_zapchast.Content = "Название вида войск: " + _type_of_troops.Name_zapchast;
                 Description.Content = "Описание: " + _type_of_troops.Description;
-                Companies.Content = "Название роты: " + Connection.companies.Find(x => x.Id_companies == _type_of_troops.Companies).Name_companies;
-                Count_serviceman.Content = "Количество военнослужащих: " + _type_of_troops.Count_serviceman;
                 Date_foundation.Content = "Дата создания: " + _type_of_troops.Date_foundation.ToString("dd.MM.yyyy");
             }
         }
@@ -48,12 +46,12 @@ namespace Курсовой_проект_Тепляков.Elements
             {
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о виде войск?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.type_of_troops);
-                    string query = $"Delete From Type_of_troops Where Id_type_of_troops = " + type_of_troops.Id_type_of_troops.ToString() + "";
+                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
+                    string query = $"Delete From Type_of_troops Where Id_zapchast = " + type_of_troops.Id_zapchast.ToString() + "";
                     var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.type_of_troops);
+                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.type_of_troops);
                     }
                     else MessageBox.Show("Запрос на удаление вида войск не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);

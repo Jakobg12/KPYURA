@@ -24,55 +24,46 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
     /// </summary>
     public partial class Locations : Page
     {
-        ClassModules.Locations locations;
-        public Locations(ClassModules.Locations _locations)
+        ClassModules.Ceh locations;
+        public Locations(ClassModules.Ceh _locations)
         {
             InitializeComponent();
             locations = _locations;
             if (_locations.Address != null)
             {
-                City.Text = _locations.City;
+                oborud.Text = _locations.oborud;
                 Address.Text = _locations.Address;
-                Square.Text = _locations.Square.ToString();
-                Count_structures.Text = _locations.Count_structures.ToString();
-            }
-            foreach (var item in ClassConnection.Connection.country)
-            {
-                ComboBoxItem cb_country = new ComboBoxItem();
-                cb_country.Tag = item.Id;
-                cb_country.Content = item.Name;
-                if (_locations.Country == item.Id) cb_country.IsSelected = true;
-                Country.Items.Add(cb_country);
+                remuslug.Text = _locations.remuslug.ToString();
             }
         }
 
         private void Click_Locations_Redact(object sender, RoutedEventArgs e)
         {
-            Country id_country_temp;
-            id_country_temp = ClassConnection.Connection.country.Find(x => x.Id == Convert.ToInt32(((ComboBoxItem)Country.SelectedItem).Tag));
-            int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.locations);
-            if (locations.City == null)
-            {
-                string query = $"Insert Into locations ([Id_locations], [Country], [City], [Address], [Square], [Count_structures]) Values ({id.ToString()}, {id_country_temp.Id.ToString()}, N'{City.Text}', N'{Address.Text}', N'{Square.Text}', N'{Count_structures.Text}')";
-                var query_apply = Login_Regin.Login.connection.Query(query);
-                if (query_apply != null)
-                {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.locations);
-                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.locations);
-                }
-                else MessageBox.Show("Запрос на добавление места дислокации не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else
-            {
-                string query = $"Update locations Set [Country] = '{id_country_temp.Id.ToString()}', [City] = N'{City.Text}', [Address] = N'{Address.Text}', [Square] = N'{Square.Text}', [Count_structures] = N'{Count_structures.Text}' Where [Id_locations] = {locations.Id_locations}";
-                var query_apply = Login_Regin.Login.connection.Query(query);
-                if (query_apply != null)
-                {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.locations);
-                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.locations);
-                }
-                else MessageBox.Show("Запрос на изменение места дислокации не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            //Country id_country_temp;
+            
+            //int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.locations);
+            //if (locations.oborud == null)
+            //{
+            //    string query = $"Insert Into locations ([Id_сeh], [Country], [oborud], [Address], [remuslug], [remuslug]) Values ({id.ToString()}, {id_country_temp.Id.ToString()}, N'{oborud.Text}', N'{Address.Text}', N'{remuslug.Text}', N'{remuslug.Text}')";
+            //    var query_apply = Login_Regin.Login.connection.Query(query);
+            //    if (query_apply != null)
+            //    {
+            //        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.locations);
+            //        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.locations);
+            //    }
+            //    else MessageBox.Show("Запрос на добавление места дислокации не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //}
+            //else
+            //{
+            //    string query = $"Update locations Set [Country] = '{id_country_temp.Id.ToString()}', [oborud] = N'{oborud.Text}', [Address] = N'{Address.Text}', [remuslug] = N'{remuslug.Text}', [remuslug] = N'{remuslug.Text}' Where [Id_сeh] = {locations.Id_сeh}";
+            //    var query_apply = Login_Regin.Login.connection.Query(query);
+            //    if (query_apply != null)
+            //    {
+            //        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.locations);
+            //        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.locations);
+            //    }
+            //    else MessageBox.Show("Запрос на изменение места дислокации не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //}
         }
 
         private void Click_Cancel_Locations_Redact(object sender, RoutedEventArgs e)
@@ -85,7 +76,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             try
             {
                 Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.locations);
-                string query = "Delete From locations Where [Id_locations] = " + locations.Id_locations.ToString() + "";
+                string query = "Delete From locations Where [Id_сeh] = " + locations.Id_сeh.ToString() + "";
                 var query_apply = Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
@@ -116,7 +107,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             if (words.Any(word => word.Length == 0))
             {
                 textBox.Text = "Ошибка: введите значение";
-                City.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
+                oborud.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
             }
         }
 
@@ -132,7 +123,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 animation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                City.BorderBrush = brush;
+                oborud.BorderBrush = brush;
             }
         }
 
@@ -159,7 +150,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 animation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                City.BorderBrush = brush;
+                oborud.BorderBrush = brush;
             }
         }
 
@@ -179,7 +170,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             if (words.Any(word => word.Length == 0))
             {
                 textBox.Text = "Ошибка: введите значение";
-                Square.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
+                remuslug.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
             }
         }
 
@@ -195,7 +186,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 animation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Square.BorderBrush = brush;
+                remuslug.BorderBrush = brush;
             }
         }
 
@@ -215,7 +206,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             if (words.Any(word => word.Length == 0))
             {
                 textBox.Text = "Ошибка: введите значение";
-                Count_structures.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
+                remuslug.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
             }
         }
 
@@ -231,7 +222,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 animation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Count_structures.BorderBrush = brush;
+                remuslug.BorderBrush = brush;
             }
         }
     }
