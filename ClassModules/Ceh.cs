@@ -12,5 +12,6 @@ namespace ClassModules
         public string oborud { get; set; }
         public string Address { get; set; }
         public string remuslug { get; set; }
+        //location
     }
 }
