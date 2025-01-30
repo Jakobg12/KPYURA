@@ -18,5 +18,6 @@ namespace ClassModules
         //public string Prava { get; set; }
         //public DateTime Date_foundation { get; set; }
         //public DateTime Date_update_information { get; set; }
+        //Companies
     }
 }
