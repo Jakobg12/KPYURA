@@ -48,7 +48,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                     ClassModules.Ceh Id_сeh_temp;
                     ClassModules.Voditel Id_voditel_temp;
                     Id_сeh_temp = ClassConnection.Connection.ceh.Find(x => x.Id_сeh == Convert.ToInt32(((ComboBoxItem)VidTS.SelectedItem).Tag));
-                    Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(((ComboBoxItem)Vmestim.SelectedItem).Tag));
+                    Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(Vmestim));
                     int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.garage);
                     if (parts.Vmestim == 0)
                     {

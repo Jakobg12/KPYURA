@@ -194,7 +194,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Garage(new ClassModules.Voditel());
+                        var add = new Pages.PagesInTable.Garage(new ClassModules.Garage());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }

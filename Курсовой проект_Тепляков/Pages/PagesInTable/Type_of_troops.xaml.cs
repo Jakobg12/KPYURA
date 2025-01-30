@@ -39,18 +39,18 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 ComboBoxItem cb_Vmestim = new ComboBoxItem();
                 cb_Vmestim.Tag = item.Id_voditel;
                 cb_Vmestim.Content = item.Name_voditel;
-                Vmestim.Items.Add(cb_Vmestim);
+                
             }
         }
 
         private void Click_TypeOfTroops_Redact(object sender, RoutedEventArgs e)
         {
             ClassModules.Voditel Id_voditel_temp;
-            Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(((ComboBoxItem)Vmestim.SelectedItem).Tag));
+            Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(Description));
             int id = Pages.Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.zapchast);
             if (type_of_troops.Name_zapchast == null)
             {
-                string query = $"Insert Into type_of_troops ([Id_zapchast], [Name_zapchast], [Description], [Vmestim], [Count_serviceman], [Date_foundation]) Values ({id.ToString()}, N'{Name_zapchast.Text}', N'{Description.Text}', '{Id_voditel_temp.Id_voditel.ToString()}', N'{Count_serviceman.Text}', '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                string query = $"Insert Into type_of_troops ([Id_zapchast], [Name_zapchast], [Description], [Vmestim], [Count_serviceman], [Date_foundation]) Values ({id.ToString()}, N'{Name_zapchast.Text}', N'{Description.Text}', '{Id_voditel_temp.Id_voditel.ToString()}', '{DateTime.Now.ToString("yyyy-MM-dd")}')";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
@@ -61,7 +61,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update type_of_troops Set Name_zapchast = N'{Name_zapchast.Text}', Description = N'{Description.Text}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}', Count_serviceman = N'{Count_serviceman.Text}' Where Id_zapchast = {type_of_troops.Id_zapchast}";
+                string query = $"Update type_of_troops Set Name_zapchast = N'{Name_zapchast.Text}', Description = N'{Description.Text}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}' Where Id_zapchast = {type_of_troops.Id_zapchast}";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
@@ -157,26 +157,6 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             }
         }
 
-        private void TextBox_PreviewTextInput_3(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex(@"^[0-9\s]*$");
-            if (!regex.IsMatch(e.Text))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void TextBox_LostFocus_3(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            string[] words = textBox.Text.Split(' ');
-            if (words.Any(word => word.Length == 0))
-            {
-                textBox.Text = "Ошибка: введите значение";
-                Count_serviceman.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
-            }
-        }
-
         private void TextBox_GotFocus_3(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -189,7 +169,6 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 animation.Duration = new Duration(TimeSpan.FromSeconds(2));
                 SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
                 brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Count_serviceman.BorderBrush = brush;
             }
         }
     }

@@ -49,7 +49,7 @@ namespace Курсовой_проект_Тепляков.Elements
             border.BeginAnimation(StackPanel.OpacityProperty, opgridAnimation);
         }
 
-        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Garage(Vmestim));
+        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Voditel(Vmestim));
 
         private void Click_remove(object sender, RoutedEventArgs e)
         {
