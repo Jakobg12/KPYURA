@@ -32,20 +32,13 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 Name_technique.Text = _technique.Name_technique;
                 Characteristics.Text = _technique.Characteristics;
             }
-            foreach (var item in ClassConnection.Connection.voditel)
-            {
-                ComboBoxItem cb_Vmestim = new ComboBoxItem();
-                cb_Vmestim.Tag = item.Id_voditel;
-                cb_Vmestim.Content = item.Name_voditel;
-                if (_technique.Vmestim == item.Id_voditel) cb_Vmestim.IsSelected = true;
-                Vmestim.Items.Add(cb_Vmestim);
-            }
+            
         }
 
         private void Click_Technique_Redact(object sender, RoutedEventArgs e)
         {
             ClassModules.Voditel Id_voditel_temp;
-            Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(((ComboBoxItem)Vmestim.SelectedItem).Tag));
+            Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(Vmestim));
             int id = Pages.Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.technique);
             if (technique.Characteristics == null)
             {
