@@ -36,9 +36,9 @@ namespace Курсовой_проект_Тепляков.Elements
             Vmestim = _Vmestim;
             if(_Vmestim.Prava != null)
             {
-                Id_garages.Content = "Рота №" + _Vmestim.Id_voditel.ToString();
-                Name_voditel.Content = "Название роты: " + _Vmestim.Name_voditel;
-                Prava.Content = "Главнокомандующий: " + _Vmestim.Prava;
+                Id_voditel.Content = "Водитель №" + _Vmestim.Id_voditel.ToString();
+                Name_voditel.Content = "Имя водителя: " + _Vmestim.Name_voditel;
+                Prava.Content = "Права: " + _Vmestim.Prava;
                 Date_foundation.Content = "Дата создания: " + _Vmestim.Date_foundation.ToString("dd.MM.yyyy");
                 Date_update_information.Content = "Дата обновления информации: " + _Vmestim.Date_update_information.ToString("dd.MM.yyyy HH:mm:ss");
             }
@@ -55,7 +55,7 @@ namespace Курсовой_проект_Тепляков.Elements
         {
             try
             {
-                if (MessageBox.Show("Вы уверены, что хотите удалить информацию о роте?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы уверены, что хотите удалить информацию о водителе?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
                     string query = $"Delete From Vmestim Where Id_voditel = " + Vmestim.Id_voditel.ToString() + "";
@@ -65,7 +65,7 @@ namespace Курсовой_проект_Тепляков.Elements
                         Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.Vmestim);
                     }
-                    else MessageBox.Show("Запрос на удаление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else MessageBox.Show("Запрос на удаление водителя не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
