@@ -185,7 +185,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PagesInTable\Garage.xaml">
+    <Page Include="Pages\PagesInTable\Voditel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,7 +193,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PagesInTable\Parts.xaml">
+    <Page Include="Pages\PagesInTable\Garage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,14 +220,14 @@
     <Compile Include="Pages\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PagesInTable\Garage.xaml.cs">
-      <DependentUpon>Garage.xaml</DependentUpon>
+    <Compile Include="Pages\PagesInTable\Voditel.xaml.cs">
+      <DependentUpon>Voditel.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PagesInTable\Locations.xaml.cs">
       <DependentUpon>Locations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PagesInTable\Parts.xaml.cs">
-      <DependentUpon>Parts.xaml</DependentUpon>
+    <Compile Include="Pages\PagesInTable\Garage.xaml.cs">
+      <DependentUpon>Garage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PagesInTable\Technique.xaml.cs">
       <DependentUpon>Technique.xaml</DependentUpon>

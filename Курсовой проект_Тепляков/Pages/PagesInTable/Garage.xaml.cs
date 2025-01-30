@@ -1,6 +1,8 @@
-﻿using ClassModules;
+﻿using ClassConnection;
+using ClassModules;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -20,144 +22,90 @@ using System.Windows.Shapes;
 namespace Курсовой_проект_Тепляков.Pages.PagesInTable
 {
     /// <summary>
-    /// Логика взаимодействия для Vmestim.xaml
+    /// Логика взаимодействия для Parts.xaml
     /// </summary>
     public partial class Garage : Page
     {
-        ClassModules.Voditel Vmestim;
-        public Garage(ClassModules.Voditel _Vmestim)
+        ClassModules.Garage parts;
+        public Garage(ClassModules.Garage _parts)
         {
             InitializeComponent();
-            Vmestim = _Vmestim;
-            if (_Vmestim.Prava != null)
+            parts = _parts;
+            foreach (var item in Connection.ceh)
             {
-                Name_voditel.Text = _Vmestim.Name_voditel;
-                Prava.Text = _Vmestim.Prava;
+                ComboBoxItem cb_locations = new ComboBoxItem();
+                cb_locations.Tag = item.Id_сeh;
+                cb_locations.Content = "Город: " + item.oborud;
+                if (_parts.Locations == item.Id_сeh) cb_locations.IsSelected = true;
+                Locations.Items.Add(cb_locations);
+            }
+            foreach (var item in Connection.voditel)
+            {
+                ComboBoxItem cb_Vmestim = new ComboBoxItem();
+                cb_Vmestim.Tag = item.Id_voditel;
+                cb_Vmestim.Content = item.Name_voditel;
+                if (_parts.Vmestim == item.Id_voditel) cb_Vmestim.IsSelected = true;
+                Vmestim.Items.Add(cb_Vmestim);
             }
         }
 
-        private void Click_Vmestim_Redact(object sender, RoutedEventArgs e)
+        private void Click_Parts_Redact(object sender, RoutedEventArgs e)
         {
-            string[] FIOPrava = Prava.Text.Split(' ');
-            if (FIOPrava.Length <= 3)
+            if (Locations.SelectedItem != null)
             {
-                int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.voditel);
-                if (Vmestim.Prava == null)
+                if (Vmestim.SelectedItem != null)
                 {
-                    string query = $"INSERT INTO Vmestim ([Id_voditel], [Name_voditel], [Prava], [Date_foundation], [Date_update_information]) VALUES ({id.ToString()}, N'{Name_voditel.Text}', N'{Prava.Text}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
-                    var query_apply = Login_Regin.Login.connection.Query(query);
-                    if (query_apply != null)
+                    ClassModules.Ceh Id_сeh_temp;
+                    ClassModules.Voditel Id_voditel_temp;
+                    Id_сeh_temp = ClassConnection.Connection.ceh.Find(x => x.Id_сeh == Convert.ToInt32(((ComboBoxItem)Locations.SelectedItem).Tag));
+                    Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(((ComboBoxItem)Vmestim.SelectedItem).Tag));
+                    int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.garage);
+                    if (parts.Vmestim == 0)
                     {
-                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
+                        string query = $"Insert Into parts ([Id_garage], [Locations], [Vmestim], [Date_of_foundation])" +
+                            $"Values ({id.ToString()}, {Id_сeh_temp.Id_сeh.ToString()}, {Id_voditel_temp.Id_voditel.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                        var query_apply = Login_Regin.Login.connection.Query(query);
+                        if (query_apply != null)
+                        {
+                            Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                            MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
+                        }
+                        else MessageBox.Show("Запрос на добавление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-                    else MessageBox.Show("Запрос на добавление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-                else
-                {
-                    string query = $"UPDATE Vmestim SET Name_voditel = N'{Name_voditel.Text}', Prava = N'{Prava.Text}', Date_update_information = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE Id_voditel = {Vmestim.Id_voditel}";
-                    var query_apply = Login_Regin.Login.connection.Query(query);
-                    if (query_apply != null)
+                    else
                     {
-                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
+                        string query = $"Update parts Set Locations = '{Id_сeh_temp.Id_сeh.ToString()}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}' Where Id_garage = {parts.Id_garage}";
+                        var query_apply = Login_Regin.Login.connection.Query(query);
+                        if (query_apply != null)
+                        {
+                            Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                            MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
+                        }
+                        else MessageBox.Show("Запрос на изменение части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-                    else MessageBox.Show("Запрос на изменение роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
 
-        private void Click_Cancel_Vmestim_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
+        private void Click_Cancel_Parts_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
 
-        private void Click_Remove_Vmestim_Redact(object sender, RoutedEventArgs e)
+        private void Click_Remove_Parts_Redact(object sender, RoutedEventArgs e)
         {
             try
             {
-                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                string query = "Delete From Vmestim Where [Id_voditel] = " + Vmestim.Id_voditel.ToString() + "";
+                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                string query = "Delete parts Where [Id_garage] = " + parts.Id_garage.ToString() + "";
                 var query_apply = Login_Regin.Login.connection.Query(query);
-                if(query_apply != null)
+                if (query_apply != null)
                 {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
+                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                    Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                 }
-                else MessageBox.Show("Запрос на удаление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на удаление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void TextBox_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex(@"^[А-Яа-яA-Za-z0-9\s]*$");
-            if (!regex.IsMatch(e.Text))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void TextBox_LostFocus_1(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            string[] words = textBox.Text.Split(' ');
-            if (words.Any(word => word.Length == 0))
-            {
-                textBox.Text = "Ошибка: введите значение";
-                Name_voditel.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
-            }
-        }
-
-        private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text.StartsWith("Ошибка:"))
-            {
-                textBox.Text = "";
-                ColorAnimation animation = new ColorAnimation();
-                animation.From = (Color)ColorConverter.ConvertFromString("#FB3F51");
-                animation.To = Colors.Transparent;
-                animation.Duration = new Duration(TimeSpan.FromSeconds(2));
-                SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
-                brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Name_voditel.BorderBrush = brush;
-            }
-        }
-
-        private void TextBox_PreviewTextInput_2(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex(@"^[А-Яа-яA-Za-z\s]*$");
-            if (!regex.IsMatch(e.Text))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void TextBox_LostFocus_2(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            string[] words = textBox.Text.Split(' ');
-            if (words.Length != 3 || words.Any(word => word.Length == 0))
-            {
-                textBox.Text = "Ошибка: введите ровно три слова";
-                Prava.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
-            }
-        }
-
-        private void TextBox_GotFocus_2(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text.StartsWith("Ошибка:"))
-            {
-                textBox.Text = "";
-                ColorAnimation animation = new ColorAnimation();
-                animation.From = (Color)ColorConverter.ConvertFromString("#FB3F51");
-                animation.To = Colors.Transparent;
-                animation.Duration = new Duration(TimeSpan.FromSeconds(2));
-                SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
-                brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                Prava.BorderBrush = brush;
             }
         }
     }
