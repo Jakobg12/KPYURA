@@ -31,33 +31,23 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
         {
             InitializeComponent();
             parts = _parts;
-            foreach (var item in Connection.ceh)
+            foreach (var item in Connection.technique)
             {
                 ComboBoxItem cb_locations = new ComboBoxItem();
-                cb_locations.Tag = item.Id_сeh;
-                cb_locations.Content = "Город: " + item.oborud;
-                if (_parts.Locations == item.Id_сeh) cb_locations.IsSelected = true;
-                Locations.Items.Add(cb_locations);
-            }
-            foreach (var item in Connection.voditel)
-            {
-                ComboBoxItem cb_Vmestim = new ComboBoxItem();
-                cb_Vmestim.Tag = item.Id_voditel;
-                cb_Vmestim.Content = item.Name_voditel;
-                if (_parts.Vmestim == item.Id_voditel) cb_Vmestim.IsSelected = true;
-                Vmestim.Items.Add(cb_Vmestim);
+                cb_locations.Tag = item.Id_technique;
+                cb_locations.Content = "Вид техники: " + item.Name_technique;
+                if (_parts.Locations == item.Id_technique) cb_locations.IsSelected = true;
+                VidTS.Items.Add(cb_locations);
             }
         }
 
         private void Click_Parts_Redact(object sender, RoutedEventArgs e)
         {
-            if (Locations.SelectedItem != null)
+            if (VidTS.SelectedItem != null)
             {
-                if (Vmestim.SelectedItem != null)
-                {
                     ClassModules.Ceh Id_сeh_temp;
                     ClassModules.Voditel Id_voditel_temp;
-                    Id_сeh_temp = ClassConnection.Connection.ceh.Find(x => x.Id_сeh == Convert.ToInt32(((ComboBoxItem)Locations.SelectedItem).Tag));
+                    Id_сeh_temp = ClassConnection.Connection.ceh.Find(x => x.Id_сeh == Convert.ToInt32(((ComboBoxItem)VidTS.SelectedItem).Tag));
                     Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(((ComboBoxItem)Vmestim.SelectedItem).Tag));
                     int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.garage);
                     if (parts.Vmestim == 0)
@@ -83,7 +73,6 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                         }
                         else MessageBox.Show("Запрос на изменение части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-                }
             }
         }
 
