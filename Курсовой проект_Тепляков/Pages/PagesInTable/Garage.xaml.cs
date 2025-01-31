@@ -36,7 +36,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 ComboBoxItem cb_locations = new ComboBoxItem();
                 cb_locations.Tag = item.Id_technique;
                 cb_locations.Content = "Вид техники: " + item.Name_technique;
-                if (_parts.Locations == item.Id_technique) cb_locations.IsSelected = true;
+                cb_locations.IsSelected = true;
                 VidTS.Items.Add(cb_locations);
             }
         }
@@ -53,7 +53,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 if (parts.Vmestim == 0)
                 {
                     string query = $"Insert Into garage ([Id_garage], [Locations], [Vmestim], [VidTS], [Date_of_foundation])" +
-                        $"Values ({id.ToString()}, {Locations.Text},{Vmestim.Text} ,{Id_сeh_temp.Id_technique.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                        $"Values ({id.ToString()}, '{Locations.Text}',{Vmestim.Text} ,{Id_сeh_temp.Id_technique.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
