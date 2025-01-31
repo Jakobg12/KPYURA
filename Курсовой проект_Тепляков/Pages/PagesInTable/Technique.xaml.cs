@@ -37,12 +37,12 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
 
         private void Click_Technique_Redact(object sender, RoutedEventArgs e)
         {
-            ClassModules.Voditel Id_voditel_temp;
-            Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(Vmestim));
+
+            string vmestim = Vmestim.Text;
             int id = Pages.Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.technique);
             if (technique.Characteristics == null)
             {
-                string query = $"Insert Into technique ([Id_technique], [Name_technique], [Vmestim], [Characteristics]) Values ({id.ToString()}, N'{Name_technique.Text}', '{Id_voditel_temp.Id_voditel.ToString()}', N'{Characteristics.Text}')";
+                string query = $"Insert Into technique ([Id_technique], [Name_technique], [Vmestim], [Characteristics]) Values ({id.ToString()}, N'{Name_technique.Text}', '{vmestim}', N'{Characteristics.Text}')";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
@@ -53,7 +53,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update technique Set Name_technique = N'{Name_technique.Text}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}', Characteristics = N'{Characteristics.Text}' Where Id_technique = {technique.Id_technique}";
+                string query = $"Update technique Set Name_technique = N'{Name_technique.Text}', Vmestim = '{vmestim.ToString()}', Characteristics = N'{Characteristics.Text}' Where Id_technique = {technique.Id_technique}";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {

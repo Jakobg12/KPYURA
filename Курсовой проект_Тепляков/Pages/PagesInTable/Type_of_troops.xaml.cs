@@ -50,7 +50,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             int id = Pages.Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.zapchast);
             if (type_of_troops.Name_zapchast == null)
             {
-                string query = $"Insert Into type_of_troops ([Id_zapchast], [Name_zapchast], [Description], [Vmestim], [Count_serviceman], [Date_foundation]) Values ({id.ToString()}, N'{Name_zapchast.Text}', N'{Description.Text}', '{Id_voditel_temp.Id_voditel.ToString()}', '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                string query = $"Insert Into zapchast ([Id_zapchast], [Name_zapchast], [Description], [Date_foundation]) Values ({id.ToString()}, N'{Name_zapchast.Text}', N'{Description.Text}', '{DateTime.Now.ToString("yyyy-MM-dd")}')";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
@@ -61,7 +61,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update type_of_troops Set Name_zapchast = N'{Name_zapchast.Text}', Description = N'{Description.Text}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}' Where Id_zapchast = {type_of_troops.Id_zapchast}";
+                string query = $"Update zapchast Set Name_zapchast = N'{Name_zapchast.Text}', Description = N'{Description.Text}' Where Id_zapchast = {type_of_troops.Id_zapchast}";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
@@ -79,7 +79,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             try
             {
                 Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
-                string query = "Delete From type_of_troops Where [Id_zapchast] = " + type_of_troops.Id_zapchast.ToString() + "";
+                string query = "Delete From zapchast Where [Id_zapchast] = " + type_of_troops.Id_zapchast.ToString() + "";
                 var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {

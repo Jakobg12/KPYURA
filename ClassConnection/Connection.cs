@@ -36,7 +36,7 @@ namespace ClassConnection
         {
             try
             {
-                string Path = $@"Server=DESKTOP-PM8TUKA;Database=kpdruzhinin;Trusted_Connection=True;User Id=sa;Password=root";
+                string Path = $@"Server=DESKTOP-JPS19OC\SQLEXPRESS;Database=kpkochetov;Trusted_Connection=True;User Id=sa;Password=root";
                 //string Path = $@"Server=student.permaviat.ru;Database=base1_ISP_21_2_23;User Id=ISP_21_2_23;Password=3frQxZ83o#";
                 SqlConnection connection = new SqlConnection(Path);
                 connection.Open();
@@ -172,7 +172,7 @@ namespace ClassConnection
                         Garage newParts = new Garage
                         {
                             Id_garage = Convert.ToInt32(itemsParts.GetValue(0)),
-                            Locations = Convert.ToInt32(itemsParts.GetValue(1)),
+                            Locations = Convert.ToString(itemsParts.GetValue(1)),
                             Vmestim = Convert.ToInt32(itemsParts.GetValue(2)),
                             VidTS = Convert.ToInt32((int)itemsParts.GetValue(3)),
                             Remrabot = Convert.ToString(itemsParts.GetValue(4)),

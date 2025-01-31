@@ -45,36 +45,37 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
         {
             if (VidTS.SelectedItem != null)
             {
-                    ClassModules.Ceh Id_сeh_temp;
-                    ClassModules.Voditel Id_voditel_temp;
-                    Id_сeh_temp = ClassConnection.Connection.ceh.Find(x => x.Id_сeh == Convert.ToInt32(((ComboBoxItem)VidTS.SelectedItem).Tag));
-                    Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(Vmestim));
-                    int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.garage);
-                    if (parts.Vmestim == 0)
+                ClassModules.Technique Id_сeh_temp;
+                ClassModules.Voditel Id_voditel_temp;
+                Id_сeh_temp = ClassConnection.Connection.technique.Find(x => x.Id_technique == Convert.ToInt32(((ComboBoxItem)VidTS.SelectedItem).Tag));
+                Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(Vmestim));
+                int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.garage);
+                if (parts.Vmestim == 0)
+                {
+                    string query = $"Insert Into garage ([Id_garage], [Locations], [Vmestim], [VidTS], [Date_of_foundation])" +
+                        $"Values ({id.ToString()}, {Locations.Text},{Vmestim.Text} ,{Id_сeh_temp.Id_technique.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
+                    var query_apply = Login_Regin.Login.connection.Query(query);
+                    if (query_apply != null)
                     {
-                        string query = $"Insert Into parts ([Id_garage], [Locations], [Vmestim], [Date_of_foundation])" +
-                            $"Values ({id.ToString()}, {Id_сeh_temp.Id_сeh.ToString()}, {Id_voditel_temp.Id_voditel.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
-                        var query_apply = Login_Regin.Login.connection.Query(query);
-                        if (query_apply != null)
-                        {
-                            Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
-                            MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
-                        }
-                        else MessageBox.Show("Запрос на добавление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                     }
-                    else
+                    else MessageBox.Show("Запрос на добавление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    string query = $"Update garage Set Locations = '{Locations.Text}', Vmestim = '{Vmestim}' Where Id_garage = {parts.Id_garage}";
+                    var query_apply = Login_Regin.Login.connection.Query(query);
+                    if (query_apply != null)
                     {
-                        string query = $"Update parts Set Locations = '{Id_сeh_temp.Id_сeh.ToString()}', Vmestim = '{Id_voditel_temp.Id_voditel.ToString()}' Where Id_garage = {parts.Id_garage}";
-                        var query_apply = Login_Regin.Login.connection.Query(query);
-                        if (query_apply != null)
-                        {
-                            Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
-                            MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
-                        }
-                        else MessageBox.Show("Запрос на изменение части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                     }
+                    else MessageBox.Show("Запрос на изменение части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
+
 
         private void Click_Cancel_Parts_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
 

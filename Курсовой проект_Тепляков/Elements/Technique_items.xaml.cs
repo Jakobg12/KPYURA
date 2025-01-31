@@ -31,7 +31,7 @@ namespace Курсовой_проект_Тепляков.Elements
             if(_technique.Characteristics != null)
             {
                 Name_technique.Content = "Название техники: " + technique.Name_technique;
-                Vmestim.Content = "Название роты: " + Connection.voditel.FirstOrDefault(x => x.Id_voditel == _technique.Vmestim).Name_voditel;
+                Vmestim.Content = "Вместимость " + Connection.technique.FirstOrDefault(x => x.Id_technique == _technique.Vmestim).Vmestim;
                 Characteristics.Content = "Характеристики: " + technique.Characteristics;
             }
         }

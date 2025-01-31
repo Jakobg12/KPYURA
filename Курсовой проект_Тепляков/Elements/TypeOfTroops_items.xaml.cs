@@ -32,7 +32,7 @@ namespace Курсовой_проект_Тепляков.Elements
             type_of_troops = _type_of_troops;
             if(_type_of_troops.Name_zapchast != null)
             {
-                Name_zapchast.Content = "Название вида войск: " + _type_of_troops.Name_zapchast;
+                Name_zapchast.Content = "Название запчасти: " + _type_of_troops.Name_zapchast;
                 Description.Content = "Описание: " + _type_of_troops.Description;
                 Date_foundation.Content = "Дата создания: " + _type_of_troops.Date_foundation.ToString("dd.MM.yyyy");
             }
@@ -44,7 +44,7 @@ namespace Курсовой_проект_Тепляков.Elements
         {
             try
             {
-                if (MessageBox.Show("Вы уверены, что хотите удалить информацию о виде войск?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы уверены, что хотите удалить информацию о виде запчасти?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                     string query = $"Delete From Type_of_troops Where Id_zapchast = " + type_of_troops.Id_zapchast.ToString() + "";
@@ -54,7 +54,7 @@ namespace Курсовой_проект_Тепляков.Elements
                         Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.type_of_troops);
                     }
-                    else MessageBox.Show("Запрос на удаление вида войск не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else MessageBox.Show("Запрос на удаление вида запчасти не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)

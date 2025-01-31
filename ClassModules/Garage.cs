@@ -9,7 +9,7 @@ namespace ClassModules
     public class Garage
     {
         public int Id_garage { get; set; }
-        public int Locations { get; set; }
+        public string Locations { get; set; }
         public int Vmestim { get; set; }
         public int VidTS { get; set; }
         public string Remrabot { get; set; }
