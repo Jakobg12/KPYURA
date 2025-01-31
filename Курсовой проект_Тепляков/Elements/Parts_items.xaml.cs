@@ -33,7 +33,7 @@ namespace Курсовой_проект_Тепляков.Elements
             if(_parts.Date_of_foundation != null)
             {
                 Id_garage.Content = "Часть № " + _parts.Id_garage;
-                ClassModules.Ceh item_location = Connection.ceh.Find(x => x.Id_сeh == _parts.Locations);
+                ClassModules.Garage item_location = Connection.garage.Find(x => x.Id_garage == _parts.Id_garage);
                 Vmestim.Content = "Название роты: " + Connection.voditel.Find(x => x.Id_voditel == _parts.Vmestim).Name_voditel;
                 Date_of_foundation.Content = "Дата основания: " + _parts.Date_of_foundation.ToString("dd.MM.yyyy");
             }

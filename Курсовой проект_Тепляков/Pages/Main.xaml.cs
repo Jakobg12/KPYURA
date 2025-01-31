@@ -16,7 +16,7 @@ namespace Курсовой_проект_Тепляков.Pages
     {
         public enum page_main
         {
-            Vmestim, locations, parts, technique, type_of_troops, none
+            Voditel, locations, parts, technique, type_of_troops, none
         }
 
         public static page_main page_select;
@@ -93,7 +93,7 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Voditel_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             
@@ -150,7 +150,7 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
-            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Voditel_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
@@ -178,19 +178,19 @@ namespace Курсовой_проект_Тепляков.Pages
             }
         }
 
-        private void LoadVmestim()
+        private void LoadVoditel()
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (ClassModules.Voditel Vmestim_items in ClassConnection.Connection.voditel)
+                foreach (ClassModules.Voditel Voditel_items in ClassConnection.Connection.voditel)
                 {
-                    if (page_select == page_main.Vmestim)
+                    if (page_select == page_main.Voditel)
                     {
-                        parrent.Children.Add(new Elements.Vmestim_items(Vmestim_items));
+                        parrent.Children.Add(new Elements.Voditel_items(Voditel_items));
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Vmestim)
+                if (page_select == page_main.Voditel)
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
@@ -201,19 +201,19 @@ namespace Курсовой_проект_Тепляков.Pages
             });
         }
         
-        private void Click_Vmestim(object sender, RoutedEventArgs e)
+        private void Click_Voditel(object sender, RoutedEventArgs e)
         {
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
+            Voditel_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            if (page_select != page_main.Vmestim)
+            if (page_select != page_main.Voditel)
             {
-                page_select = page_main.Vmestim;
+                page_select = page_main.Voditel;
                 DoubleAnimation opgridAnimation = new DoubleAnimation();
                 opgridAnimation.From = 1;
                 opgridAnimation.To = 0;
@@ -227,7 +227,7 @@ namespace Курсовой_проект_Тепляков.Pages
                     opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
                     opgriAnimation.Completed += delegate
                     {
-                        LoadVmestim();
+                        LoadVoditel();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
                 };
@@ -263,7 +263,7 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Voditel_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             
@@ -320,7 +320,7 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = true;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Voditel_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFF"));
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
@@ -357,7 +357,7 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = false;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Voditel_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             
@@ -388,11 +388,11 @@ namespace Курсовой_проект_Тепляков.Pages
                 //    var locationsByCountry = Connection.locations.Where(l => countryIds.Contains(l.Country)).ToList();
                 //    foreach (var itemSearch in locationsByCountry) parrent.Children.Add(new Elements.Locations_items(itemSearch));
                 //}
-                else if (page_select == page_main.Vmestim)
+                else if (page_select == page_main.Voditel)
                 {
                     parrent.Children.Clear();
-                    var VmestimById = Connection.voditel.FindAll(x => x.Id_voditel.ToString().Contains(Search.Text));
-                    foreach (var itemSearch in VmestimById) parrent.Children.Add(new Elements.Vmestim_items(itemSearch));
+                    var VoditelById = Connection.voditel.FindAll(x => x.Id_voditel.ToString().Contains(Search.Text));
+                    foreach (var itemSearch in VoditelById) parrent.Children.Add(new Elements.Voditel_items(itemSearch));
                 }
                 else if (page_select == page_main.technique)
                 {
@@ -428,10 +428,10 @@ namespace Курсовой_проект_Тепляков.Pages
                         if (parrent != null) parrent.Children.Clear();
                         LoadLocations();
                     }
-                    else if (page_select == page_main.Vmestim)
+                    else if (page_select == page_main.Voditel)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadVmestim();
+                        LoadVoditel();
                     }
                     else if (page_select == page_main.technique)
                     {
@@ -458,7 +458,7 @@ namespace Курсовой_проект_Тепляков.Pages
             Search.IsEnabled = false;
             parts_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             locations_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Vmestim_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Voditel_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             typeOfTroops_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             parrent.Children.Clear();
@@ -481,10 +481,10 @@ namespace Курсовой_проект_Тепляков.Pages
                     page_select = page_main.none;
                     Click_Locations(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.Vmestim)
+                else if (page_restart == page_main.Voditel)
                 {
                     page_select = page_main.none;
-                    Click_Vmestim(new object(), new RoutedEventArgs());
+                    Click_Voditel(new object(), new RoutedEventArgs());
                 }
                 else if (page_restart == page_main.technique)
                 {
@@ -521,5 +521,6 @@ namespace Курсовой_проект_Тепляков.Pages
                 control1.BeginAnimation(ScrollViewer.OpacityProperty, opgridAnimation);
             }
         }
+
     }
 }

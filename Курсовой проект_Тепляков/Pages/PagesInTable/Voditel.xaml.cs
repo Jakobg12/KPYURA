@@ -24,11 +24,11 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
     /// </summary>
     public partial class Voditel : Page
     {
-        ClassModules.Voditel Vmestim;
+        ClassModules.Voditel voditel;
         public Voditel(ClassModules.Voditel _Vmestim)
         {
             InitializeComponent();
-            Vmestim = _Vmestim;
+            voditel = _Vmestim;
             if (_Vmestim.Prava != null)
             {
                 Name_voditel.Text = _Vmestim.Name_voditel;
@@ -36,50 +36,50 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             }
         }
 
-        private void Click_Vmestim_Redact(object sender, RoutedEventArgs e)
+        private void Click_Voditel_Redact(object sender, RoutedEventArgs e)
         {
             string[] FIOPrava = Prava.Text.Split(' ');
             if (FIOPrava.Length <= 3)
             {
                 int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.voditel);
-                if (Vmestim.Prava == null)
+                if (voditel.Prava == null)
                 {
-                    string query = $"INSERT INTO Vmestim ([Id_voditel], [Name_voditel], [Prava], [Date_foundation], [Date_update_information]) VALUES ({id.ToString()}, N'{Name_voditel.Text}', N'{Prava.Text}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+                    string query = $"INSERT INTO Voditel ([Id_voditel], [Name_voditel], [Prava], [Date_foundation], [Date_update_information]) VALUES ({id.ToString()}, N'{Name_voditel.Text}', N'{Prava.Text}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
                         Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Voditel);
                     }
                     else MessageBox.Show("Запрос на добавление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
-                    string query = $"UPDATE Vmestim SET Name_voditel = N'{Name_voditel.Text}', Prava = N'{Prava.Text}', Date_update_information = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE Id_voditel = {Vmestim.Id_voditel}";
+                    string query = $"UPDATE Voditel SET Name_voditel = N'{Name_voditel.Text}', Prava = N'{Prava.Text}', Date_update_information = '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}' WHERE Id_voditel = {voditel.Id_voditel}";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
                         Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Voditel);
                     }
                     else MessageBox.Show("Запрос на изменение роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
 
-        private void Click_Cancel_Vmestim_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
+        private void Click_Cancel_Voditel_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
 
-        private void Click_Remove_Vmestim_Redact(object sender, RoutedEventArgs e)
+        private void Click_Remove_Voditel_Redact(object sender, RoutedEventArgs e)
         {
             try
             {
                 Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                string query = "Delete From Vmestim Where [Id_voditel] = " + Vmestim.Id_voditel.ToString() + "";
+                string query = "Delete From Voditel Where [Id_voditel] = " + voditel.Id_voditel.ToString() + "";
                 var query_apply = Login_Regin.Login.connection.Query(query);
                 if(query_apply != null)
                 {
                     Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Vmestim);
+                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Voditel);
                 }
                 else MessageBox.Show("Запрос на удаление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
