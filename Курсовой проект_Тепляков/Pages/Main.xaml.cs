@@ -9,6 +9,7 @@ using System.Windows.Media.Animation;
 using Курсовой_проект_Тепляков.Pages.Login_Regin;
 using ClassModules;
 using ClassConnection;
+using Курсовой_проект_Тепляков.Elements;
 
 namespace Курсовой_проект_Тепляков.Pages
 {

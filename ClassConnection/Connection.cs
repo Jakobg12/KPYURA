@@ -130,21 +130,21 @@ namespace ClassConnection
             {
                 if (tables.ToString() == "voditel")
                 {
-                    SqlDataReader itemsVmestim = Query("Select * From " + tables.ToString() + " Order By [Id_voditel]");
+                    SqlDataReader itemsVoditel = Query("Select * From " + tables.ToString() + " Order By [Id_voditel]");
                     voditel.Clear();
-                    while (itemsVmestim.Read())
+                    while (itemsVoditel.Read())
                     {
-                        Voditel newVmestim = new Voditel
+                        Voditel newVoditel = new Voditel
                         {
-                            Id_voditel = Convert.ToInt32(itemsVmestim.GetValue(0)),
-                            Name_voditel = Convert.ToString(itemsVmestim.GetValue(1)),
-                            Prava = Convert.ToString(itemsVmestim.GetValue(2)),
-                            Date_foundation = Convert.ToDateTime(itemsVmestim.GetValue(3)),
-                            Date_update_information = Convert.ToDateTime(itemsVmestim.GetValue(4))
+                            Id_voditel = Convert.ToInt32(itemsVoditel.GetValue(0)),
+                            Name_voditel = Convert.ToString(itemsVoditel.GetValue(1)),
+                            Prava = Convert.ToString(itemsVoditel.GetValue(2)),
+                            Date_foundation = Convert.ToDateTime(itemsVoditel.GetValue(3)),
+                            Date_update_information = Convert.ToDateTime(itemsVoditel.GetValue(4))
                         };
-                        voditel.Add(newVmestim);
+                        voditel.Add(newVoditel);
                     }
-                    itemsVmestim.Close();
+                    itemsVoditel.Close();
                 }
                 if (tables.ToString() == "сeh")
                 {
@@ -282,7 +282,7 @@ namespace ClassConnection
                         row++;
                     }
                 }
-                if (nameTable[2] == "Vmestim")
+                if (nameTable[2] == "voditel")
                 {
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (роты)");
                     worksheet.Cells[1, 1].Value = "Код роты";

@@ -41,7 +41,7 @@ namespace Курсовой_проект_Тепляков.Pages
             {
                 if (PartsExport.IsChecked == true) table[0] = "parts";
                 if (LocationsExport.IsChecked == true) table[1] = "locations";
-                if (VmestimExport.IsChecked == true) table[2] = "Vmestim";
+                if (VoditelExport.IsChecked == true) table[2] = "voditel";
                 if (TechniqueExport.IsChecked == true) table[3] = "technique";
                 if (TypeOfTroopsExport.IsChecked == true) table[4] = "typeOfTroops";
             }

@@ -22,25 +22,25 @@ using Курсовой_проект_Тепляков.Pages.PagesInTable;
 namespace Курсовой_проект_Тепляков.Elements
 {
     /// <summary>
-    /// Логика взаимодействия для Vmestim_items.xaml
+    /// Логика взаимодействия для Voditel_items.xaml
     /// </summary>
-    public partial class Vmestim_items : UserControl
+    public partial class Voditel_items : UserControl
     {
         Connection connection;
-        ClassModules.Voditel Vmestim;
-        public Vmestim_items(ClassModules.Voditel _Vmestim)
+        ClassModules.Voditel Voditel;
+        public Voditel_items(ClassModules.Voditel _Voditel)
         {
             InitializeComponent();
             connection = new ClassConnection.Connection();
             if (Pages.Login_Regin.Login.UserInfo[1] != "admin") Buttons.Visibility = Visibility.Hidden;
-            Vmestim = _Vmestim;
-            if(_Vmestim.Prava != null)
+            Voditel = _Voditel;
+            if(_Voditel.Prava != null)
             {
-                Id_voditel.Content = "Водитель №" + _Vmestim.Id_voditel.ToString();
-                Name_voditel.Content = "Имя водителя: " + _Vmestim.Name_voditel;
-                Prava.Content = "Права: " + _Vmestim.Prava;
-                Date_foundation.Content = "Дата создания: " + _Vmestim.Date_foundation.ToString("dd.MM.yyyy");
-                Date_update_information.Content = "Дата обновления информации: " + _Vmestim.Date_update_information.ToString("dd.MM.yyyy HH:mm:ss");
+                Id_voditel.Content = "Водитель №" + _Voditel.Id_voditel.ToString();
+                Name_voditel.Content = "Имя водителя: " + _Voditel.Name_voditel;
+                Prava.Content = "Права: " + _Voditel.Prava;
+                Date_foundation.Content = "Дата создания: " + _Voditel.Date_foundation.ToString("dd.MM.yyyy");
+                Date_update_information.Content = "Дата обновления информации: " + _Voditel.Date_update_information.ToString("dd.MM.yyyy HH:mm:ss");
             }
             DoubleAnimation opgridAnimation = new DoubleAnimation();
             opgridAnimation.From = 0;
@@ -49,7 +49,7 @@ namespace Курсовой_проект_Тепляков.Elements
             border.BeginAnimation(StackPanel.OpacityProperty, opgridAnimation);
         }
 
-        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Voditel(Vmestim));
+        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Voditel(Voditel));
 
         private void Click_remove(object sender, RoutedEventArgs e)
         {
@@ -58,7 +58,7 @@ namespace Курсовой_проект_Тепляков.Elements
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о водителе?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
-                    string query = $"Delete From Vmestim Where Id_voditel = " + Vmestim.Id_voditel.ToString() + "";
+                    string query = $"Delete From Voditel Where Id_voditel = " + Voditel.Id_voditel.ToString() + "";
                     var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {

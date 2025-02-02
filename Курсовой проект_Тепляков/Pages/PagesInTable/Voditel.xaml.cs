@@ -20,19 +20,19 @@ using System.Windows.Shapes;
 namespace Курсовой_проект_Тепляков.Pages.PagesInTable
 {
     /// <summary>
-    /// Логика взаимодействия для Vmestim.xaml
+    /// Логика взаимодействия для Voditel.xaml
     /// </summary>
     public partial class Voditel : Page
     {
         ClassModules.Voditel voditel;
-        public Voditel(ClassModules.Voditel _Vmestim)
+        public Voditel(ClassModules.Voditel _Voditel)
         {
             InitializeComponent();
-            voditel = _Vmestim;
-            if (_Vmestim.Prava != null)
+            voditel = _Voditel;
+            if (_Voditel.Prava != null)
             {
-                Name_voditel.Text = _Vmestim.Name_voditel;
-                Prava.Text = _Vmestim.Prava;
+                Name_voditel.Text = _Voditel.Name_voditel;
+                Prava.Text = _Voditel.Prava;
             }
         }
 
