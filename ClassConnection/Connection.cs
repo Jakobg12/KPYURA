@@ -247,13 +247,14 @@ namespace ClassConnection
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage())
             {
-                if (nameTable[0] == "parts")
+                if (nameTable[0] == "Garage")
                 {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (части)");
-                    worksheet.Cells[1, 1].Value = "Код части";
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (гаража)");
+                    worksheet.Cells[1, 1].Value = "Код гаража";
                     worksheet.Cells[1, 2].Value = "Место дислокации";
-                    worksheet.Cells[1, 3].Value = "Название роты";
-                    worksheet.Cells[1, 4].Value = "Дата основания";
+                    worksheet.Cells[1, 3].Value = "Вместимость";
+                    worksheet.Cells[1, 4].Value = "Вид Т.С.";
+                    worksheet.Cells[1, 5].Value = "Ремонтные работы";
                     int row = 2;
                     foreach (var record in garage)
                     {

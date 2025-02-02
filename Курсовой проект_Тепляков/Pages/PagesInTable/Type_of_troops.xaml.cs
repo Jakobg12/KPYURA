@@ -57,7 +57,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.type_of_troops);
                 }
-                else MessageBox.Show("Запрос на добавление вида войск не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на добавление запчасти не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -68,7 +68,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.type_of_troops);
                 }
-                else MessageBox.Show("Запрос на изменение вида войск не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на изменение запчасти не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -86,7 +86,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.type_of_troops);
                 }
-                else MessageBox.Show("Запрос на удаление вида войск не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на удаление запчасти не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {
