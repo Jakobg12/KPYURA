@@ -22,10 +22,10 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
     /// <summary>
     /// Логика взаимодействия для Locations.xaml
     /// </summary>
-    public partial class Locations : Page
+    public partial class Ceh : Page
     {
         ClassModules.Ceh locations;
-        public Locations(ClassModules.Ceh _locations)
+        public Ceh(ClassModules.Ceh _locations)
         {
             InitializeComponent();
             locations = _locations;

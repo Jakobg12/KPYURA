@@ -131,7 +131,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     if (page_select == page_main.locations)
                     {
-                        parrent.Children.Add(new Elements.Locations_items(locations_items));
+                        parrent.Children.Add(new Elements.Ceh_items(locations_items));
                         await Task.Delay(90);
                     }
                 }
@@ -139,7 +139,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Locations(new ClassModules.Ceh());
+                        var add = new Pages.PagesInTable.Ceh(new ClassModules.Ceh());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
@@ -301,7 +301,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     if (page_select == page_main.type_of_troops)
                     {
-                        parrent.Children.Add(new Elements.TypeOfTroops_items(type_of_troops_items));
+                        parrent.Children.Add(new Elements.Zapchast_items(type_of_troops_items));
                         await Task.Delay(90);
                     }
                 }
@@ -309,7 +309,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     if (Login.UserInfo[1] == "admin")
                     {
-                        var add = new Pages.PagesInTable.Type_of_troops(new ClassModules.Zapchast());
+                        var add = new Pages.PagesInTable.Zapchast(new ClassModules.Zapchast());
                         parrent.Children.Add(new Elements.Add(add));
                     }
                 }
@@ -405,7 +405,7 @@ namespace Курсовой_проект_Тепляков.Pages
                 {
                     parrent.Children.Clear();
                     var typeOfTroopByName = Connection.zapchast.FindAll(x => x.Name_zapchast.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.TypeOfTroops_items(itemSearch));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
                 
             }

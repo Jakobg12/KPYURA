@@ -127,7 +127,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Elements\Locations_items.xaml">
+    <Page Include="Elements\Ceh.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,7 +139,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Elements\TypeOfTroops_items.xaml">
+    <Page Include="Elements\Zapchast_items.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,8 +157,8 @@
     <Compile Include="Elements\Companies_items.xaml.cs">
       <DependentUpon>Companies_items.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Elements\Locations_items.xaml.cs">
-      <DependentUpon>Locations_items.xaml</DependentUpon>
+    <Compile Include="Elements\Ceh.xaml.cs">
+      <DependentUpon>Ceh.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\Parts_items.xaml.cs">
       <DependentUpon>Parts_items.xaml</DependentUpon>
@@ -166,8 +166,8 @@
     <Compile Include="Elements\Technique_items.xaml.cs">
       <DependentUpon>Technique_items.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Elements\TypeOfTroops_items.xaml.cs">
-      <DependentUpon>TypeOfTroops_items.xaml</DependentUpon>
+    <Compile Include="Elements\Zapchast_items.xaml.cs">
+      <DependentUpon>Zapchast_items.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -189,7 +189,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PagesInTable\Locations.xaml">
+    <Page Include="Pages\PagesInTable\Ceh.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,7 +201,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PagesInTable\Type_of_troops.xaml">
+    <Page Include="Pages\PagesInTable\Zapchast.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,8 +223,8 @@
     <Compile Include="Pages\PagesInTable\Voditel.xaml.cs">
       <DependentUpon>Voditel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PagesInTable\Locations.xaml.cs">
-      <DependentUpon>Locations.xaml</DependentUpon>
+    <Compile Include="Pages\PagesInTable\Ceh.xaml.cs">
+      <DependentUpon>Ceh.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PagesInTable\Garage.xaml.cs">
       <DependentUpon>Garage.xaml</DependentUpon>
@@ -232,8 +232,8 @@
     <Compile Include="Pages\PagesInTable\Technique.xaml.cs">
       <DependentUpon>Technique.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PagesInTable\Type_of_troops.xaml.cs">
-      <DependentUpon>Type_of_troops.xaml</DependentUpon>
+    <Compile Include="Pages\PagesInTable\Zapchast.xaml.cs">
+      <DependentUpon>Zapchast.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

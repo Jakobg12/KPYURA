@@ -255,12 +255,16 @@ namespace ClassConnection
                     worksheet.Cells[1, 3].Value = "Вместимость";
                     worksheet.Cells[1, 4].Value = "Вид Т.С.";
                     worksheet.Cells[1, 5].Value = "Ремонтные работы";
+                    worksheet.Cells[1, 6].Value = "Дата создания";
                     int row = 2;
                     foreach (var record in garage)
                     {
                         worksheet.Cells[row, 1].Value = record.Id_garage;
-                        worksheet.Cells[row, 2].Value = voditel.First(x => x.Id_voditel == record.Vmestim).Name_voditel;
-                        worksheet.Cells[row, 3].Value = record.Date_of_foundation.ToString("dd.MM.yyyy");
+                        worksheet.Cells[row, 2].Value = record.Locations;
+                        worksheet.Cells[row, 3].Value = record.Vmestim;
+                        worksheet.Cells[row, 4].Value = technique.First(x => x.Id_technique == record.VidTS).Id_technique;
+                        worksheet.Cells[row, 5].Value = record.Remrabot;
+                        worksheet.Cells[row, 6].Value = record.Date_of_foundation.ToString("dd.MM.yyyy");
                         row++;
                     }
                 }

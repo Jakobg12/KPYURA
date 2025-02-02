@@ -22,10 +22,10 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
     /// <summary>
     /// Логика взаимодействия для Type_of_troops.xaml
     /// </summary>
-    public partial class Type_of_troops : Page
+    public partial class Zapchast : Page
     {
         ClassModules.Zapchast type_of_troops;
-        public Type_of_troops(ClassModules.Zapchast _type_of_troops)
+        public Zapchast(ClassModules.Zapchast _type_of_troops)
         {
             InitializeComponent();
             type_of_troops = _type_of_troops;

@@ -22,21 +22,21 @@ namespace Курсовой_проект_Тепляков.Elements
     /// <summary>
     /// Логика взаимодействия для Locations_items.xaml
     /// </summary>
-    public partial class Locations_items : UserControl
+    public partial class Ceh_items : UserControl
     {
-        ClassModules.Ceh locations;
-        public Locations_items(ClassModules.Ceh _locations)
+        ClassModules.Ceh ceh;
+        public Ceh_items(ClassModules.Ceh _locations)
         {
             InitializeComponent();
             if (Pages.Login_Regin.Login.UserInfo[1] != "admin") Buttons.Visibility = Visibility.Hidden;
-            locations = _locations;
+            ceh = _locations;
             if(_locations.remuslug != null)
             {
                 Address.Content = "Адрес: " + _locations.Address;
                 remuslug.Content = "Ремонтная услуга : " + _locations.remuslug;
             }
         }
-        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Locations(locations));
+        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Ceh(ceh));
 
         private void Click_remove(object sender, RoutedEventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Курсовой_проект_Тепляков.Elements
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о месте дислокации?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.locations);
-                    string query = $"Delete From Locations Where Id_сeh = " + locations.Id_сeh.ToString() + "";
+                    string query = $"Delete From Locations Where Id_сeh = " + ceh.Id_сeh.ToString() + "";
                     var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {

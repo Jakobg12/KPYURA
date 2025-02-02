@@ -22,14 +22,14 @@ namespace Курсовой_проект_Тепляков.Elements
     /// <summary>
     /// Логика взаимодействия для TypeOfTroops_items.xaml
     /// </summary>
-    public partial class TypeOfTroops_items : UserControl
+    public partial class Zapchast_items : UserControl
     {
-        ClassModules.Zapchast type_of_troops;
-        public TypeOfTroops_items(ClassModules.Zapchast _type_of_troops)
+        ClassModules.Zapchast zapchast;
+        public Zapchast_items(ClassModules.Zapchast _type_of_troops)
         {
             InitializeComponent();
             if (Pages.Login_Regin.Login.UserInfo[1] != "admin") Buttons.Visibility = Visibility.Hidden;
-            type_of_troops = _type_of_troops;
+            zapchast = _type_of_troops;
             if(_type_of_troops.Name_zapchast != null)
             {
                 Name_zapchast.Content = "Название запчасти: " + _type_of_troops.Name_zapchast;
@@ -38,7 +38,7 @@ namespace Курсовой_проект_Тепляков.Elements
             }
         }
 
-        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Type_of_troops(type_of_troops));
+        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Zapchast(zapchast));
 
         private void Click_remove(object sender, RoutedEventArgs e)
         {
@@ -47,7 +47,7 @@ namespace Курсовой_проект_Тепляков.Elements
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о виде запчасти?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
-                    string query = $"Delete From Type_of_troops Where Id_zapchast = " + type_of_troops.Id_zapchast.ToString() + "";
+                    string query = $"Delete From Type_of_troops Where Id_zapchast = " + zapchast.Id_zapchast.ToString() + "";
                     var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
