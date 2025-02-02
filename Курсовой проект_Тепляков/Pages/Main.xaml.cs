@@ -35,7 +35,7 @@ namespace Курсовой_проект_Тепляков.Pages
             if (connectApply == true)
             {
                 Login.connection.LoadData(Connection.Tables.voditel);
-                Login.connection.LoadData(Connection.Tables.ceh);
+                Login.connection.LoadData(Connection.Tables.сeh);
                 Login.connection.LoadData(Connection.Tables.garage);
                 Login.connection.LoadData(Connection.Tables.technique);
                 Login.connection.LoadData(Connection.Tables.zapchast);

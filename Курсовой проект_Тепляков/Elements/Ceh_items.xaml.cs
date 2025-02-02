@@ -46,12 +46,12 @@ namespace Курсовой_проект_Тепляков.Elements
             {
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о цехе?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.ceh);
-                    string query = $"Delete From ceh Where Id_сeh = " + Ceh.Id_сeh.ToString() + "";
+                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.сeh);
+                    string query = $"Delete From сeh Where Id_сeh = " + Ceh.Id_сeh.ToString() + "";
                     var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.ceh);
+                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.сeh);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.ceh);
                     }
                     else MessageBox.Show("Запрос на удаление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);

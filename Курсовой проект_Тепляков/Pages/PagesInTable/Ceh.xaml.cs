@@ -37,14 +37,14 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
 
         private void Click_ceh_Redact(object sender, RoutedEventArgs e)
         {
-            int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.ceh);
+            int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.сeh);
             if (ceh.oborud == null)
             {
-                string query = $"Insert Into ceh ([Id_ceh], [oborud], [Address], [remuslug]) Values ({id.ToString()}, '{oborud.Text}', '{Address.Text}', '{remuslug.Text}')";
+                string query = $"Insert Into сeh ([Id_сeh], [oborud], [Address], [remuslug]) Values ({id.ToString()}, '{oborud.Text}', '{Address.Text}', '{remuslug.Text}')";
                 var query_apply = Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.ceh);
+                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.сeh);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.ceh);
                 }
                 else MessageBox.Show("Запрос на добавление места дислокации не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -55,7 +55,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 var query_apply = Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.ceh);
+                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.сeh);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.ceh);
                 }
                 else MessageBox.Show("Запрос на изменение места дислокации не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -71,12 +71,12 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
         {
             try
             {
-                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.ceh);
+                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.сeh);
                 string query = "Delete From ceh Where [Id_сeh] = " + ceh.Id_сeh.ToString() + "";
                 var query_apply = Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.ceh);
+                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.сeh);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.ceh);
                 }
                 else MessageBox.Show("Запрос на удаление места дислокации не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);

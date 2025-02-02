@@ -30,7 +30,7 @@ namespace ClassConnection
         #endregion
         public enum Tables
         {
-            voditel, ceh, garage, technique, zapchast, users
+            voditel, сeh, garage, technique, zapchast, users
         }
 
         public static void Connect()
@@ -150,7 +150,7 @@ namespace ClassConnection
                 
                 if (tables.ToString() == "сeh")
                 {
-                    SqlDataReader itemsLocations = Query("Select * From " + tables.ToString() + " Order By [Id_ceh]");
+                    SqlDataReader itemsLocations = Query("Select * From " + tables.ToString() + " Order By [Id_сeh]");
                     ceh.Clear();
                     while (itemsLocations.Read())
                     {
