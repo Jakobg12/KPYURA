@@ -268,14 +268,13 @@ namespace ClassConnection
                         row++;
                     }
                 }
-                if (nameTable[1] == "locations")
+                if (nameTable[1] == "ceh")
                 {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (места дислокации)");
-                    worksheet.Cells[1, 1].Value = "Код места дислокации";
-                    worksheet.Cells[1, 2].Value = "Город";
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (цеха)");
+                    worksheet.Cells[1, 1].Value = "Код цеха";
+                    worksheet.Cells[1, 2].Value = "Оборудование";
                     worksheet.Cells[1, 3].Value = "Адрес";
-                    worksheet.Cells[1, 4].Value = "Занимаемая площадь";
-                    worksheet.Cells[1, 5].Value = "Количество строений";
+                    worksheet.Cells[1, 4].Value = "Ремонтная услуга";
                     int row = 2;
                     foreach (var record in ceh)
                     {
@@ -283,27 +282,25 @@ namespace ClassConnection
                         worksheet.Cells[row, 2].Value = record.oborud;
                         worksheet.Cells[row, 3].Value = record.Address;
                         worksheet.Cells[row, 4].Value = record.remuslug;
-                        worksheet.Cells[row, 5].Value = record.remuslug;
                         row++;
                     }
                 }
                 if (nameTable[2] == "voditel")
                 {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (роты)");
-                    worksheet.Cells[1, 1].Value = "Код роты";
-                    worksheet.Cells[1, 2].Value = "Название роты";
-                    worksheet.Cells[1, 3].Value = "ФИО главнокомандующего";
-                    worksheet.Cells[1, 4].Value = "Вид войск";
-                    worksheet.Cells[1, 5].Value = "Дата создания";
-                    worksheet.Cells[1, 6].Value = "Дата обновления информации";
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (водителей)");
+                    worksheet.Cells[1, 1].Value = "Код водителя";
+                    worksheet.Cells[1, 2].Value = "ФИО водителя";
+                    worksheet.Cells[1, 3].Value = "Права";
+                    worksheet.Cells[1, 4].Value = "Дата создания";
+                    worksheet.Cells[1, 5].Value = "Дата обновления информации";
                     int row = 2;
                     foreach (var record in voditel)
                     {
                         worksheet.Cells[row, 1].Value = record.Id_voditel;
                         worksheet.Cells[row, 2].Value = record.Name_voditel;
                         worksheet.Cells[row, 3].Value = record.Prava;
-                        worksheet.Cells[row, 5].Value = record.Date_foundation.ToString("dd.MM.yyyy");
-                        worksheet.Cells[row, 6].Value = record.Date_update_information.ToString("dd.MM.yyyy");
+                        worksheet.Cells[row, 4].Value = record.Date_foundation.ToString("dd.MM.yyyy");
+                        worksheet.Cells[row, 5].Value = record.Date_update_information.ToString("dd.MM.yyyy");
                         row++;
                     }
                 }
@@ -312,7 +309,7 @@ namespace ClassConnection
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (техника)");
                     worksheet.Cells[1, 1].Value = "Код техники";
                     worksheet.Cells[1, 2].Value = "Название техники";
-                    worksheet.Cells[1, 3].Value = "Название роты";
+                    worksheet.Cells[1, 3].Value = "Вместимость";
                     worksheet.Cells[1, 4].Value = "Характеристики";
                     int row = 2;
                     foreach (var record in technique)
@@ -326,9 +323,9 @@ namespace ClassConnection
                 }
                 if (nameTable[4] == "zapchast")
                 {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (виды войск)");
-                    worksheet.Cells[1, 1].Value = "Код вида войск";
-                    worksheet.Cells[1, 2].Value = "Название вида войск";
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Записи (запчасти)");
+                    worksheet.Cells[1, 1].Value = "Код запчасти";
+                    worksheet.Cells[1, 2].Value = "Название запчасти";
                     worksheet.Cells[1, 3].Value = "Описание";
                     worksheet.Cells[1, 4].Value = "Дата создания";
                     int row = 2;
