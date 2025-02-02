@@ -32,10 +32,10 @@ namespace Курсовой_проект_Тепляков.Elements
             parts = _parts;
             if(_parts.Date_of_foundation != null)
             {
-                Id_garage.Content = "Часть № " + _parts.Id_garage;
+                Id_garage.Content = "Гараж " + _parts.Id_garage;
                 ClassModules.Garage item_location = Connection.garage.Find(x => x.Id_garage == _parts.Id_garage);
 
-                Vmestim.Content = "Название роты: " + Connection.voditel.Find(x => x.Id_voditel == _parts.Vmestim).Name_voditel;
+                Vmestim.Content = "Фио водителя: " + Connection.voditel.Find(x => x.Id_voditel == _parts.Vmestim).Name_voditel;
                 Date_of_foundation.Content = "Дата основания: " + _parts.Date_of_foundation.ToString("dd.MM.yyyy");
             }
         }
@@ -46,7 +46,7 @@ namespace Курсовой_проект_Тепляков.Elements
         {
             try
             {
-                if (MessageBox.Show("Вы уверены, что хотите удалить информацию о части?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Вы уверены, что хотите удалить информацию о гараже?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                     string query = $"Delete From Parts Where Id_garage = " + parts.Id_garage.ToString() + "";
@@ -56,7 +56,7 @@ namespace Курсовой_проект_Тепляков.Elements
                         Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.parts);
                     }
-                    else MessageBox.Show("Запрос на удаление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else MessageBox.Show("Запрос на удаление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)

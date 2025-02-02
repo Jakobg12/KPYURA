@@ -62,7 +62,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                         Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                     }
-                    else MessageBox.Show("Запрос на добавление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else MessageBox.Show("Запрос на добавление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                         Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                     }
-                    else MessageBox.Show("Запрос на изменение части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else MessageBox.Show("Запрос на изменение гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
@@ -93,7 +93,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                     Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
                     Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
                 }
-                else MessageBox.Show("Запрос на удаление части не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на удаление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {

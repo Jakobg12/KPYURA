@@ -51,7 +51,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                         Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Voditel);
                     }
-                    else MessageBox.Show("Запрос на добавление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else MessageBox.Show("Запрос на добавление водителя не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                         Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Voditel);
                     }
-                    else MessageBox.Show("Запрос на изменение роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    else MessageBox.Show("Запрос на изменение водителя не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                     Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.voditel);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Voditel);
                 }
-                else MessageBox.Show("Запрос на удаление роты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на удаление водителя не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {

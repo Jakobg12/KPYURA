@@ -33,7 +33,7 @@ namespace Курсовой_проект_Тепляков.Elements
             if(_locations.remuslug != null)
             {
                 Address.Content = "Адрес: " + _locations.Address;
-                remuslug.Content = "Количество сооружений: " + _locations.remuslug;
+                remuslug.Content = "Ремонтная услуга : " + _locations.remuslug;
             }
         }
         private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Locations(locations));
