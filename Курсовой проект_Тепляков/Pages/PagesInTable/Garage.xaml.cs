@@ -36,7 +36,9 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 ComboBoxItem cb_locations = new ComboBoxItem();
                 cb_locations.Tag = item.Id_technique;
                 cb_locations.Content = "Вид техники: " + item.Name_technique;
-                cb_locations.IsSelected = true;
+
+                 cb_locations.IsSelected = true;
+
                 VidTS.Items.Add(cb_locations);
             }
         }

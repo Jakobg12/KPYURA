@@ -36,7 +36,7 @@ namespace ClassConnection
         {
             try
             {
-                string Path = $@"Server=DESKTOP-JPS19OC\SQLEXPRESS;Database=kpkochetov;Trusted_Connection=True;User Id=sa;Password=root";
+                string Path = $@"Server=DESKTOP-PM8TUKA;Database=kpkochetov;Trusted_Connection=True;User Id=sa;Password=root";
                 //string Path = $@"Server=student.permaviat.ru;Database=base1_ISP_21_2_23;User Id=ISP_21_2_23;Password=3frQxZ83o#";
                 SqlConnection connection = new SqlConnection(Path);
                 connection.Open();
