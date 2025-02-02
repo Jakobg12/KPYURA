@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Курсовой_проект_Тепляков.Pages.PagesInTable"
       mc:Ignorable="d" 
       d:DesignHeight="750" d:DesignWidth="950"
-      Title="Locations">
+      Title="ceh">
 
     <Border CornerRadius="10,0,0,10">
         <Border.Background>
@@ -26,13 +26,13 @@
                         <TextBox x:Name="Address" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,310,193,0" VerticalAlignment="Top" LostFocus="TextBox_LostFocus_3" GotFocus="TextBox_GotFocus_3"/>
                         <Label Content="Ремонтные услуги" Margin="39,355,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="remuslug" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,400,193,0" VerticalAlignment="Top" PreviewTextInput="TextBox_PreviewTextInput_4" LostFocus="TextBox_LostFocus_4" GotFocus="TextBox_GotFocus_4"/>
-                        <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Locations_Redact" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_ceh_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>
-                        <Button x:Name="btn_cancel"  Style="{StaticResource BtnRedac}" Background="#FFE48F2B" Margin="0,0,26.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Cancel_Locations_Redact" HorizontalAlignment="Right">
+                        <Button x:Name="btn_cancel"  Style="{StaticResource BtnRedac}" Background="#FFE48F2B" Margin="0,0,26.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Cancel_ceh_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/backs.png" Width="20" Height="20"/>
                         </Button>
-                        <Button x:Name="btn_remove" Style="{StaticResource BtnRedac}" Background="#FFE42B2B" Margin="30,0,0,23.6" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Remove_Locations_Redact" HorizontalAlignment="Left">
+                        <Button x:Name="btn_remove" Style="{StaticResource BtnRedac}" Background="#FFE42B2B" Margin="30,0,0,23.6" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Remove_ceh_Redact" HorizontalAlignment="Left">
                             <Image Source="/Images/del.png" Width="20" Height="20"/>
                         </Button>
                     </Grid>

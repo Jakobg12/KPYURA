@@ -48,9 +48,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             if (VidTS.SelectedItem != null)
             {
                 ClassModules.Technique Id_сeh_temp;
-                ClassModules.Voditel Id_voditel_temp;
                 Id_сeh_temp = ClassConnection.Connection.technique.Find(x => x.Id_technique == Convert.ToInt32(((ComboBoxItem)VidTS.SelectedItem).Tag));
-                Id_voditel_temp = ClassConnection.Connection.voditel.Find(x => x.Id_voditel == Convert.ToInt32(Vmestim));
                 int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.garage);
                 if (parts.Vmestim == 0)
                 {
@@ -60,7 +58,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                     if (query_apply != null)
                     {
                         Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Garage);
                     }
                     else MessageBox.Show("Запрос на добавление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
@@ -71,7 +69,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                     if (query_apply != null)
                     {
                         Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Garage);
                     }
                     else MessageBox.Show("Запрос на изменение гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
@@ -91,7 +89,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
                 if (query_apply != null)
                 {
                     Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
-                    Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.parts);
+                    Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Garage);
                 }
                 else MessageBox.Show("Запрос на удаление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

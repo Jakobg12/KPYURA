@@ -127,7 +127,7 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
 
         private void TextBox_PreviewTextInput_2(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"^[А-Яа-яA-Za-z\s]*$");
+            Regex regex = new Regex(@"^[0-9\s]*$");
             if (!regex.IsMatch(e.Text))
             {
                 e.Handled = true;
@@ -138,9 +138,9 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
         {
             TextBox textBox = (TextBox)sender;
             string[] words = textBox.Text.Split(' ');
-            if (words.Length != 3 || words.Any(word => word.Length == 0))
+            if (words.Length == 0)
             {
-                textBox.Text = "Ошибка: введите ровно три слова";
+                textBox.Text = "Ошибка: Уберите пробелы";
                 Prava.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
             }
         }

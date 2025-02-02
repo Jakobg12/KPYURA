@@ -22,10 +22,10 @@ namespace Курсовой_проект_Тепляков.Elements
     /// <summary>
     /// Логика взаимодействия для Parts_items.xaml
     /// </summary>
-    public partial class Parts_items : UserControl
+    public partial class Garage_items : UserControl
     {
         ClassModules.Garage parts;
-        public Parts_items(ClassModules.Garage _parts)
+        public Garage_items(ClassModules.Garage _parts)
         {
             InitializeComponent();
             if (Pages.Login_Regin.Login.UserInfo[1] != "admin") Buttons.Visibility = Visibility.Hidden;
@@ -54,7 +54,7 @@ namespace Курсовой_проект_Тепляков.Elements
                     if (query_apply != null)
                     {
                         Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.parts);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.Garage);
                     }
                     else MessageBox.Show("Запрос на удаление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }

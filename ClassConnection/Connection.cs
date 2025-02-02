@@ -9,6 +9,7 @@ using OfficeOpenXml;
 using Microsoft.Win32;
 using System.Windows.Forms;
 using Google.Protobuf.Collections;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace ClassConnection
 {
@@ -29,7 +30,7 @@ namespace ClassConnection
         #endregion
         public enum Tables
         {
-            voditel, locations, garage, technique, zapchast, users
+            voditel, ceh, garage, technique, zapchast, users
         }
 
         public static void Connect()
@@ -146,9 +147,10 @@ namespace ClassConnection
                     }
                     itemsVoditel.Close();
                 }
+                
                 if (tables.ToString() == "сeh")
                 {
-                    SqlDataReader itemsLocations = Query("Select * From " + tables.ToString() + " Order By [Id_сeh]");
+                    SqlDataReader itemsLocations = Query("Select * From " + tables.ToString() + " Order By [Id_ceh]");
                     ceh.Clear();
                     while (itemsLocations.Read())
                     {

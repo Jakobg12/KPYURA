@@ -52,7 +52,7 @@ namespace Курсовой_проект_Тепляков.Elements
                     if (query_apply != null)
                     {
                         Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.zapchast);
-                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.type_of_troops);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.zapchast);
                     }
                     else MessageBox.Show("Запрос на удаление вида запчасти не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }

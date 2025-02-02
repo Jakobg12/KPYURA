@@ -127,11 +127,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Elements\Ceh.xaml">
+    <Page Include="Elements\Ceh_items.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Elements\Parts_items.xaml">
+    <Page Include="Elements\Garage_items.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,11 +157,11 @@
     <Compile Include="Elements\Companies_items.xaml.cs">
       <DependentUpon>Companies_items.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Elements\Ceh.xaml.cs">
-      <DependentUpon>Ceh.xaml</DependentUpon>
+    <Compile Include="Elements\Ceh_items.xaml.cs">
+      <DependentUpon>Ceh_items.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Elements\Parts_items.xaml.cs">
-      <DependentUpon>Parts_items.xaml</DependentUpon>
+    <Compile Include="Elements\Garage_items.xaml.cs">
+      <DependentUpon>Garage_items.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\Technique_items.xaml.cs">
       <DependentUpon>Technique_items.xaml</DependentUpon>
