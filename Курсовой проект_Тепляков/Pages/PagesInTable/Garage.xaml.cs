@@ -43,32 +43,32 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
             }
         }
 
-        private void Click_Parts_Redact(object sender, RoutedEventArgs e)
+        private void Click_Garage_Redact(object sender, RoutedEventArgs e)
         {
             if (VidTS.SelectedItem != null)
             {
                 ClassModules.Technique Id_сeh_temp;
                 Id_сeh_temp = ClassConnection.Connection.technique.Find(x => x.Id_technique == Convert.ToInt32(((ComboBoxItem)VidTS.SelectedItem).Tag));
-                int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.garage);
+                int id = Login_Regin.Login.connection.SetLastId(ClassConnection.Connection.Tables.Garage);
                 if (parts.Vmestim == 0)
                 {
-                    string query = $"Insert Into garage ([Id_garage], [Locations], [Vmestim], [VidTS], [Date_of_foundation])" +
+                    string query = $"Insert Into Garage ([Id_garage], [Locations], [Vmestim], [VidTS], [Date_of_foundation])" +
                         $"Values ({id.ToString()}, '{Locations.Text}',{Vmestim.Text} ,{Id_сeh_temp.Id_technique.ToString()}, '{DateTime.Now.ToString("yyyy-MM-dd")}')";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.Garage);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Garage);
                     }
                     else MessageBox.Show("Запрос на добавление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
-                    string query = $"Update garage Set Locations = '{Locations.Text}', Vmestim = '{Vmestim}' Where Id_garage = {parts.Id_garage}";
+                    string query = $"Update Garage Set Locations = '{Locations.Text}', Vmestim = '{Vmestim}' Where Id_garage = {parts.Id_garage}";
                     var query_apply = Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                        Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.Garage);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Garage);
                     }
                     else MessageBox.Show("Запрос на изменение гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -77,18 +77,18 @@ namespace Курсовой_проект_Тепляков.Pages.PagesInTable
         }
 
 
-        private void Click_Cancel_Parts_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
+        private void Click_Cancel_Garage_Redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
 
-        private void Click_Remove_Parts_Redact(object sender, RoutedEventArgs e)
+        private void Click_Remove_Garage_Redact(object sender, RoutedEventArgs e)
         {
             try
             {
-                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
-                string query = "Delete parts Where [Id_garage] = " + parts.Id_garage.ToString() + "";
+                Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.Garage);
+                string query = "Delete Garage Where [Id_garage] = " + parts.Id_garage.ToString() + "";
                 var query_apply = Login_Regin.Login.connection.Query(query);
                 if (query_apply != null)
                 {
-                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                    Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.Garage);
                     Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Garage);
                 }
                 else MessageBox.Show("Запрос на удаление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);

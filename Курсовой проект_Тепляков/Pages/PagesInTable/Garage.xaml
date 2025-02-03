@@ -28,13 +28,13 @@
                         <ComboBox x:Name="VidTS"  Height="36" Background="#FFDEDEDE" Margin="40,300,193,0" VerticalAlignment="Top" />
                         <Label Content="Ремонтные работы" Margin="40,341,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="Remrabot" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,380,193,0" VerticalAlignment="Top"  />
-                        <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Parts_Redact" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Garage_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>
-                        <Button x:Name="btn_cancel"  Style="{StaticResource BtnRedac}" Background="#FFE48F2B" Margin="0,0,26.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Cancel_Parts_Redact" HorizontalAlignment="Right">
+                        <Button x:Name="btn_cancel"  Style="{StaticResource BtnRedac}" Background="#FFE48F2B" Margin="0,0,26.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Cancel_Garage_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/backs.png" Width="20" Height="20"/>
                         </Button>
-                        <Button x:Name="btn_remove" Style="{StaticResource BtnRedac}" Background="#FFE42B2B" Margin="30,0,0,23.6" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Remove_Parts_Redact" HorizontalAlignment="Left">
+                        <Button x:Name="btn_remove" Style="{StaticResource BtnRedac}" Background="#FFE42B2B" Margin="30,0,0,23.6" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Remove_Garage_Redact" HorizontalAlignment="Left">
                             <Image Source="/Images/del.png" Width="20" Height="20"/>
                         </Button>
                     </Grid>

@@ -16,31 +16,32 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Курсовой_проект_Тепляков.Pages;
 using Курсовой_проект_Тепляков.Pages.PagesInTable;
+using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace Курсовой_проект_Тепляков.Elements
 {
     /// <summary>
-    /// Логика взаимодействия для Parts_items.xaml
+    /// Логика взаимодействия для Garage_items.xaml
     /// </summary>
     public partial class Garage_items : UserControl
     {
-        ClassModules.Garage parts;
-        public Garage_items(ClassModules.Garage _parts)
+        ClassModules.Garage garage;
+        public Garage_items(ClassModules.Garage _garage)
         {
             InitializeComponent();
             if (Pages.Login_Regin.Login.UserInfo[1] != "admin") Buttons.Visibility = Visibility.Hidden;
-            parts = _parts;
-            if(_parts.Date_of_foundation != null)
+            garage = _garage;
+            if(_garage.Date_of_foundation != null)
             {
-                Id_garage.Content = "Гараж " + _parts.Id_garage;
-                ClassModules.Garage item_location = Connection.garage.Find(x => x.Id_garage == _parts.Id_garage);
-
-                Vmestim.Content = "Фио водителя: " + Connection.voditel.Find(x => x.Id_voditel == _parts.Vmestim).Name_voditel;
-                Date_of_foundation.Content = "Дата основания: " + _parts.Date_of_foundation.ToString("dd.MM.yyyy");
+                Id_garage.Content = "Гараж " + _garage.Id_garage;
+                ClassModules.Garage item_location = Connection.garage.Find(x => x.Id_garage == _garage.Id_garage);
+                Locations.Content = "Дислокация " + _garage.Locations;
+                Vmestim.Content = "Вместимость: " + _garage.Vmestim;
+                Date_of_foundation.Content = "Дата основания: " + _garage.Date_of_foundation.ToString("dd.MM.yyyy");
             }
         }
 
-        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Garage(parts));
+        private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Garage(garage));
 
         private void Click_remove(object sender, RoutedEventArgs e)
         {
@@ -48,12 +49,12 @@ namespace Курсовой_проект_Тепляков.Elements
             {
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о гараже?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
-                    string query = $"Delete From Parts Where Id_garage = " + parts.Id_garage.ToString() + "";
+                    Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.Garage);
+                    string query = $"Delete From Garage Where Id_garage = " + garage.Id_garage.ToString() + "";
                     var query_apply = Pages.Login_Regin.Login.connection.Query(query);
                     if (query_apply != null)
                     {
-                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.garage);
+                        Pages.Login_Regin.Login.connection.LoadData(ClassConnection.Connection.Tables.Garage);
                         MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Pages.Main.page_main.Garage);
                     }
                     else MessageBox.Show("Запрос на удаление гаража не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);

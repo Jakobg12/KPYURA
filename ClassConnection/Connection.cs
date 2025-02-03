@@ -30,7 +30,7 @@ namespace ClassConnection
         #endregion
         public enum Tables
         {
-            voditel, сeh, garage, technique, zapchast, users
+            voditel, сeh, Garage, technique, zapchast, users
         }
 
         public static void Connect()
